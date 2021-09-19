@@ -1,4 +1,4 @@
-import { ReactNode } from 'react'
+import { ReactNode, forwardRef, RefObject } from 'react'
 import styled from 'styled-components'
 import css from '@styled-system/css'
 import {
@@ -14,9 +14,18 @@ import {
 } from 'styled-system'
 import { motion, MotionProps } from 'framer-motion'
 
-type GridProps = { spaceChildren?: number; flexDirection?: string }
-
-const CustomGrid = styled(motion.div)<MotionProps & GridProps>(
+interface Grid
+  extends FlexboxProps,
+    SpaceProps,
+    LayoutProps,
+    PositionProps,
+    MotionProps {
+  tag?: 'div' | 'section' | 'form' | 'aside' | 'header' | 'footer'
+  children?: ReactNode
+  spaceChildren?: number
+  ref?: RefObject<HTMLElement> | null
+}
+const CustomGrid = styled(motion.div)<Grid>(
   css({
     display: 'flex',
     position: 'relative'
@@ -52,21 +61,12 @@ const CustomGrid = styled(motion.div)<MotionProps & GridProps>(
   compose(space, layout, flexbox, position)
 )
 
-const Flex = ({
-  tag = 'div',
-  children,
-  ...rest
-}: Grid & FlexboxProps & SpaceProps & LayoutProps & PositionProps) => {
-  return (
-    <CustomGrid as={tag} {...rest}>
+const Flex = forwardRef<HTMLElement, Grid>(
+  ({ tag = 'div', children, ...rest }, ref) => (
+    <CustomGrid as={tag} ref={ref} {...rest}>
       {children}
     </CustomGrid>
   )
-}
-
-interface Grid extends GridProps {
-  tag?: 'div' | 'section' | 'form' | 'aside' | 'header' | 'footer'
-  children?: ReactNode
-}
+)
 
 export default Flex

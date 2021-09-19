@@ -75,7 +75,10 @@ const Menu: React.FC = () => {
         </$.MenuInfo>
       </$.MenuItem>
 
-      <$.MenuItem style={{ translateY }} onClick={() => router.push('/perfil')}>
+      <$.MenuItem
+        style={{ translateY }}
+        onClick={() => router.push('/profile')}
+      >
         <$.MenuIllustration width={55} height={76} left={1} top={-5}>
           <Image
             src="/assets/avatar.png"
@@ -133,7 +136,7 @@ const Menu: React.FC = () => {
       </$.MenuItem>
       <$.MenuItem
         style={{ translateY }}
-        onClick={() => router.push('/contato')}
+        onClick={() => router.push('/contact')}
       >
         <$.MenuIllustration width={56} height={76} left={1} top={-7}>
           <Image

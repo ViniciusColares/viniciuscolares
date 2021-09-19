@@ -1,10 +1,11 @@
+import { RefObject } from 'react'
 import styled from 'styled-components'
 import css from '@styled-system/css'
 import { rgba } from 'polished'
 
 import Flex from '@components/Flex'
 import { Heading } from '@components/Typo'
-import { colors } from '@styles/theme'
+import { colors, shadows } from '@styles/theme'
 
 export const Profile = styled(Flex)(
   css({
@@ -61,12 +62,15 @@ export const Timeline = styled(Flex)(
   })
 )
 
-export const Carousel = styled(Flex)(
+export const Carousel = styled(Flex)<{ ref: RefObject<HTMLElement> }>(
   css({
     position: 'relative',
-    width: '100%',
-    height: '230px'
-  })
+    width: '100%'
+  }),
+  ({ height }) =>
+    css({
+      height: `${height}px`
+    })
 )
 
 export const Step = styled(Flex)<{ visible: boolean }>(
@@ -75,22 +79,28 @@ export const Step = styled(Flex)<{ visible: boolean }>(
     flexDirection: 'column',
     alignItems: 'center',
     width: '100%',
-    opacity: 0,
     left: 0,
     top: 0,
+    opacity: 0,
+    visibility: 'hidden',
     h2: {
       fontSize: 3,
-      color: 'accent'
+      color: 'accent',
+      textAlign: 'center'
     },
     h3: {
       fontSize: 2,
-      color: 'primaryDark'
+      color: 'primaryDark',
+      textAlign: 'center',
+      textShadow: shadows.textBorder('255 255 255', '70%'),
+      mb: 3
     }
   }),
   ({ visible }) =>
     visible &&
     css({
-      opacity: 1
+      opacity: 1,
+      visibility: 'visible'
     })
 )
 
@@ -138,7 +148,7 @@ export const DuolingoSection = styled(Flex)(
       width: 'fit-content',
       alignSelf: 'center',
       alignItems: 'flex-end',
-      marginTop: '-55px',
+      marginTop: '-35px',
       cursor: 'pointer',
       '> div:first-of-type': {
         zIndex: 1
@@ -168,8 +178,7 @@ export const DuolingoUser = styled('a')(
     textDecoration: 'none',
     fontSize: 3,
     fontWeight: 600,
-    color: '#78C800',
-    mb: 1
+    color: '#78C800'
   })
 )
 

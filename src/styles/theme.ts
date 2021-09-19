@@ -22,6 +22,11 @@ export const fonts = {
   text: "'Rubik', sans-serif"
 }
 
+export const shadows = {
+  textBorder: (color, opacity) =>
+    `1px 1px 1px rgb(${color} / ${opacity}), -1px -1px 1px rgb(254 255 255 / ${opacity}), -1px 1px 1px rgb(${color} / ${opacity}), 1px -1px 1px rgb(${color} / ${opacity})`
+}
+
 export const fontSizes = [
   '0.65rem',
   '0.8rem',
@@ -60,6 +65,12 @@ declare module 'styled-components' {
     medias: (key: keyof typeof breakpoints) => string
     colors: { [key in keyof typeof colors]: string }
     fonts: { [key in keyof typeof fonts]: string }
+    shadows: {
+      [key in keyof typeof shadows]: (
+        color: string,
+        opacity: string
+      ) => string | string
+    }
     breakpoints: string[]
     fontSizes: string[]
     space: number[]
@@ -71,6 +82,7 @@ export const theme: DefaultTheme = {
   colors,
   breakpoints,
   fonts,
+  shadows,
   fontSizes,
   space
 }

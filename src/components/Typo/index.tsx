@@ -47,6 +47,7 @@ const CustomText = styled.p<T>(
     fontWeight: '400',
     lineHeight: '1.5',
     margin: '0 0 12px 0',
+    textAlign: 'left',
     'strong, span': {
       fontWeight: '500',
       color: 'accent'
@@ -68,4 +69,17 @@ const Text = ({ tag = 'p', children, ...rest }: Text) => {
   )
 }
 
-export { Heading, Text }
+interface Label extends Text {
+  tag?: 'span' | 'a'
+  color?: string
+  children: ReactNode
+}
+const Label = ({ tag = 'span', color, children, ...rest }: Text) => {
+  return (
+    <Text tag={tag} {...rest}>
+      {children}
+    </Text>
+  )
+}
+
+export { Heading, Text, Label }

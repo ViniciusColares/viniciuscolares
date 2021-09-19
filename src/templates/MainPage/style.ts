@@ -61,7 +61,8 @@ export const MainContent = styled(motion.section)(
     justifyContent: 'flex-start',
     width: '100%',
     height: '100%',
-    overflow: 'auto',
+    overflowY: 'auto',
+    overflowX: 'hidden',
     borderRadius: '16px',
     pb: 6,
     zIndex: 1
