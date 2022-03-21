@@ -1,9 +1,19 @@
 {
   "compilerOptions": {
     "target": "ESNEXT",
-    "types": ["node", "jest"],
-    "typeRoots": ["src/typings", "node_modules/@types"],
-    "lib": ["dom", "dom.iterable", "esnext"],
+    "types": [
+      "node",
+      "jest"
+    ],
+    "typeRoots": [
+      "src/typings",
+      "node_modules/@types"
+    ],
+    "lib": [
+      "dom",
+      "dom.iterable",
+      "esnext"
+    ],
     "baseUrl": ".",
     "allowJs": true,
     "checkJs": false,
@@ -19,16 +29,37 @@
     "noImplicitAny": false,
     "jsx": "preserve",
     "paths": {
-      "@public/*": ["./public/*"],
-      "@modules/*": ["./node_modules/*"],
-      "@components/*": ["./src/components/*"],
-      "@templates/*": ["./src/templates/*"],
-      "@styles/*": ["./src/styles/*"],
-      "@pages/*": ["./src/pages/*"],
-      "@store/*": ["./src/store/*"]
-    }
+      "@public/*": [
+        "./public/*"
+      ],
+      "@modules/*": [
+        "./node_modules/*"
+      ],
+      "@components/*": [
+        "./src/components/*"
+      ],
+      "@templates/*": [
+        "./src/templates/*"
+      ],
+      "@styles/*": [
+        "./src/styles/*"
+      ],
+      "@pages/*": [
+        "./src/pages/*"
+      ],
+      "@store/*": [
+        "./src/store/*"
+      ]
+    },
+    "incremental": true
   },
   "compileOnSave": true,
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
