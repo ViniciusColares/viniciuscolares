@@ -64,20 +64,15 @@ export const Timeline = styled(Flex)(
 export const Carousel = styled(Flex)(
   css({
     position: 'relative',
-    width: '100%',
-    height: '230px'
+    width: '100%'
   })
 )
 
-export const Step = styled(Flex)<{ visible: boolean }>(
+export const Step = styled(Flex)(
   css({
-    position: 'absolute',
     flexDirection: 'column',
     alignItems: 'center',
     width: '100%',
-    opacity: 0,
-    left: 0,
-    top: 0,
     h2: {
       fontSize: 3,
       color: 'accent'
@@ -86,12 +81,7 @@ export const Step = styled(Flex)<{ visible: boolean }>(
       fontSize: 2,
       color: 'primaryDark'
     }
-  }),
-  ({ visible }) =>
-    visible &&
-    css({
-      opacity: 1
-    })
+  })
 )
 
 export const Knowledge = styled(Flex)(
@@ -140,15 +130,15 @@ export const DuolingoSection = styled(Flex)(
       alignItems: 'flex-end',
       marginTop: '-55px',
       cursor: 'pointer',
-      '> div:first-of-type': {
+      '[alt="Duolingo mascot"]': {
         zIndex: 1
       },
-      '> div:last-of-type': {
+      '> div': {
         backgroundColor: 'white',
         padding: '10px 25px',
         borderRadius: '50px',
-        marginLeft: '-20px',
-        boxShadow: '0px 2px 0px rgba(0, 0, 0, 0.15)'
+        boxShadow: '0px 2px 0px rgba(0, 0, 0, 0.15)',
+        marginLeft: '-20px'
       }
     },
     '.duolingo-avatar': {
@@ -161,18 +151,6 @@ export const DuolingoSection = styled(Flex)(
   })
 )
 
-export const DuolingoUser = styled('a')(
-  css({
-    fontFamily: 'text',
-    textAlign: 'center',
-    textDecoration: 'none',
-    fontSize: 3,
-    fontWeight: 600,
-    color: '#78C800',
-    mb: 1
-  })
-)
-
 export const TotalExp = styled(Flex)(
   css({
     display: 'flex',
@@ -181,12 +159,6 @@ export const TotalExp = styled(Flex)(
     span: {
       mb: 0
     }
-  })
-)
-
-export const LangInfo = styled(Flex)(
-  css({
-    mt: 3
   })
 )
 

@@ -37,8 +37,8 @@ const Range = ({
       <$.Range>
         <$.RangeInput
           type="range"
-          min="2010"
-          max="2021"
+          min={from}
+          max={to}
           value={value}
           onChange={(e) => onSlide(e.target.value)}
           {...restProps}
