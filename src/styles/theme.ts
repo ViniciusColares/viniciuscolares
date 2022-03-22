@@ -12,7 +12,7 @@ export const colors = {
   gray75: '#47454B',
   gray100: '#311B38',
   contrast: '#FFFFFF',
-  shadow: '#290759',
+  shadow: '#3C0D80',
   success: '#00B007',
   error: '#EB5757'
 }

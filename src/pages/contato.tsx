@@ -42,14 +42,13 @@ const Contato = () => {
 
     try {
       const response = await fetch(
-        `https://api.convertkit.com/v3/forms/${process.env.NEXT_PUBLIC_CONVERTKIT_API_FORM_ID}/subscribe`,
+        `https://api.convertkit.com/v3/forms/${process.env.NEXT_PUBLIC_CONVERTKIT_FORM_ID}/subscribe`,
         {
           method: 'POST',
           mode: 'cors',
           body: form
         }
       ).then((res) => res.json())
-      console.log(response)
       if (response.status !== 'OK') {
         response.message === 'Email address is invalid' && setInvalidEmail(true)
         document
