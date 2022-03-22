@@ -15,18 +15,23 @@ const Home = () => {
   return (
     <MainPage pageTitle="início">
       <$.MainHeading>
-        <Heading fontSize={2}>Revolucione seu mundo</Heading>
+        <Heading fontSize={2}>Revolucione o seu mundo com</Heading>
         <Heading fontSize={6} color="accent">
-          com tecnologia
+          tecnologia
         </Heading>
       </$.MainHeading>
 
-      <Flex my="3vh" mx="3vw" justifyContent="center">
+      <Flex
+        width={[250, 350]}
+        height={[250, 350]}
+        alignSelf="center"
+        my="3vh"
+        mx="3vw"
+      >
         <Image
           src="/assets/home_illustrations.svg"
           alt="Dummy building a web page"
-          width={350}
-          height={350}
+          layout="fill"
         />
       </Flex>
 

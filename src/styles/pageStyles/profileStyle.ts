@@ -1,9 +1,10 @@
 import styled from 'styled-components'
 import css from '@styled-system/css'
+import { rgba } from 'polished'
+
 import Flex from '@components/Flex'
 import { Heading } from '@components/Typo'
 import { colors } from '@styles/theme'
-import { rgba } from 'polished'
 
 export const Profile = styled(Flex)(
   css({
@@ -55,60 +56,30 @@ export const Intro = styled(Flex)(
 
 export const Timeline = styled(Flex)(
   css({
+    position: 'relative',
+    width: '100%'
+  })
+)
+
+export const Carousel = styled(Flex)(
+  css({
+    position: 'relative',
+    width: '100%'
+  })
+)
+
+export const Step = styled(Flex)(
+  css({
     flexDirection: 'column',
-    flex: '1 auto',
-    padding: '0 15px',
-    ul: {
-      paddingLeft: 3,
-      listStyle: 'none outside none',
-      li: {
-        position: 'relative',
-        '&:not(:last-of-type)': { pb: 5 },
-        '&::before': {
-          left: '-15px',
-          top: '10px',
-          width: '8px',
-          height: '8px',
-          content: "''",
-          bg: 'contrast',
-          borderRadius: '50%',
-          position: 'absolute',
-          zIndex: 1
-        },
-        '&::after': {
-          left: '-12px',
-          top: '10px',
-          width: '2px',
-          height: '100%',
-          content: "''",
-          bg: 'primaryDark',
-          position: 'absolute'
-        },
-        'h3, h4': {
-          display: 'inline-flex',
-          fontSize: 2
-        },
-        h3: {
-          color: 'accent',
-          mr: 2,
-          pt: 1
-        },
-        h4: {
-          color: 'primaryDark'
-        },
-        h5: {
-          mb: 2,
-          fontSize: 2,
-          fontWeight: 'bold',
-          fontFamily: 'text',
-          color: 'primaryDark'
-        },
-        p: {
-          margin: 0,
-          fontSize: 2,
-          lineHeight: 1.5
-        }
-      }
+    alignItems: 'center',
+    width: '100%',
+    h2: {
+      fontSize: 3,
+      color: 'accent'
+    },
+    h3: {
+      fontSize: 2,
+      color: 'primaryDark'
     }
   })
 )
@@ -117,6 +88,7 @@ export const Knowledge = styled(Flex)(
   css({
     flexDirection: 'row',
     flexWrap: 'wrap',
+    justifyContent: 'center',
     flex: '1 auto',
     bg: rgba(colors.primaryDark, 0.25),
     backdropFilter: 'blur(3px)',
@@ -146,11 +118,11 @@ export const DuolingoSection = styled(Flex)(
     flexDirection: 'column',
     alignSelf: 'center',
     width: 'calc(100% - 30px)',
-    background: '#F1F1F1',
+    background: 'rgba(255 255 255 / 90%)',
     boxShadow: '0px 6px 6px rgba(0, 0, 0, 0.35)',
     borderRadius: '6px',
     p: 3,
-    my: 5,
+    mt: 4,
     header: {
       display: 'flex',
       width: 'fit-content',
@@ -158,15 +130,15 @@ export const DuolingoSection = styled(Flex)(
       alignItems: 'flex-end',
       marginTop: '-55px',
       cursor: 'pointer',
-      '> div:first-of-type': {
+      '[alt="Duolingo mascot"]': {
         zIndex: 1
       },
-      '> div:last-of-type': {
+      '> div': {
         backgroundColor: 'white',
         padding: '10px 25px',
         borderRadius: '50px',
-        marginLeft: '-20px',
-        boxShadow: '0px 2px 0px rgba(0, 0, 0, 0.15)'
+        boxShadow: '0px 2px 0px rgba(0, 0, 0, 0.15)',
+        marginLeft: '-20px'
       }
     },
     '.duolingo-avatar': {
@@ -187,12 +159,6 @@ export const TotalExp = styled(Flex)(
     span: {
       mb: 0
     }
-  })
-)
-
-export const LangInfo = styled(Flex)(
-  css({
-    mt: 3
   })
 )
 

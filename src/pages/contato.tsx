@@ -7,7 +7,7 @@ import {
   SiLinkedin,
   SiTwitter,
   SiGithub,
-  SiDevDotTo
+  SiDevdotto
 } from 'react-icons/si'
 
 import MainPage from '@templates/MainPage'
@@ -49,7 +49,6 @@ const Contato = () => {
           body: form
         }
       ).then((res) => res.json())
-
       if (response.status !== 'OK') {
         response.message === 'Email address is invalid' && setInvalidEmail(true)
         document
@@ -156,7 +155,7 @@ const Contato = () => {
               <SiGithub size={22} color="white" /> Github
             </$.Social>
             <$.Social href="https://dev.to/viniciuscolares" target="blank">
-              <SiDevDotTo size={22} color="white" /> Dev.to
+              <SiDevdotto size={22} color="white" /> Dev.to
             </$.Social>
           </Flex>
 
