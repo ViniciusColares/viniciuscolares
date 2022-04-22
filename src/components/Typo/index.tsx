@@ -11,8 +11,14 @@ import {
   TypographyProps
 } from 'styled-system'
 
-type H = React.FC<HTMLHeadingElement>
-const CustomHeading = styled.h1<H>(
+type Heading = SpaceProps &
+  ColorProps &
+  TypographyProps & {
+    tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+    children: ReactNode
+  }
+
+const CustomHeading = styled.h1<HTMLHeadingElement>(
   css({
     letterSpacing: '0.7px',
     fontFamily: 'heading',
@@ -26,12 +32,7 @@ const CustomHeading = styled.h1<H>(
   }),
   compose(space, color, typography)
 )
-interface Heading extends SpaceProps, TypographyProps, ColorProps {
-  tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
-  color?: string
-  children: ReactNode
-}
-const Heading = ({ tag = 'h1', children, ...rest }: Heading) => {
+const Heading: React.FC<Heading> = ({ tag = 'h1', children, ...rest }) => {
   return (
     <CustomHeading as={tag} {...rest}>
       {children}

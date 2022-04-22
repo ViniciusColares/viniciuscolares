@@ -4,6 +4,7 @@ declare global {
       NEXT_PUBLIC_CONVERTKIT_API_KEY: string
       NEXT_PUBLIC_CONVERTKIT_FORM_ID: string
       NEXT_PUBLIC_CONVERTKIT_TAG_NEWSLETTER: string
+      NEXT_PUBLIC_GA_ID: string
     }
   }
 }

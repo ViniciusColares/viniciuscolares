@@ -15,7 +15,9 @@ const Home = () => {
   return (
     <MainPage pageTitle="início">
       <$.MainHeading>
-        <Heading fontSize={2}>Revolucione o seu mundo com</Heading>
+        <Heading mt={2} fontSize={2}>
+          Revolucione o seu mundo com
+        </Heading>
         <Heading fontSize={6} color="accent">
           tecnologia
         </Heading>

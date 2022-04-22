@@ -44,6 +44,10 @@ class MyDocument extends Document {
         <body>
           <Main />
           <NextScript />
+          <script
+            async
+            src="https://www.googletagmanager.com/gtag/js?id=UA-226879210-1"
+          ></script>
         </body>
       </Html>
     )
