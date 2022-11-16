@@ -55,16 +55,18 @@ const Menu: React.FC = () => {
       <$.MenuItem style={{ translateY }} onClick={() => router.push('/')}>
         <$.MenuIllustration width={47} height={81} left={2} top={-8}>
           <Image
+            width={47}
+            height={81}
             src="/assets/menu/bg_rocket.png"
             alt="A cellphone launching a rocket"
-            layout="fill"
           />
         </$.MenuIllustration>
         <$.MenuIllustration width={37} height={60} left="14px" top={-11}>
           <Image
+            width={37}
+            height={60}
             src="/assets/menu/rocket.png"
             alt="The rocket been launched"
-            layout="fill"
           />
         </$.MenuIllustration>
         <$.MenuInfo>
@@ -75,12 +77,16 @@ const Menu: React.FC = () => {
         </$.MenuInfo>
       </$.MenuItem>
 
-      <$.MenuItem style={{ translateY }} onClick={() => router.push('/perfil')}>
+      <$.MenuItem
+        style={{ translateY }}
+        onClick={() => router.push('/profile')}
+      >
         <$.MenuIllustration width={55} height={76} left={1} top={-5}>
           <Image
+            width={55}
+            height={76}
             src="/assets/avatar.png"
             alt="A man sitting in front of a projector screen"
-            layout="fill"
           />
         </$.MenuIllustration>
 
@@ -97,9 +103,10 @@ const Menu: React.FC = () => {
       >
         <$.MenuIllustration width={45} height={80} left={2} top={-7}>
           <Image
+            width={45}
+            height={80}
             src="/assets/menu/apps.png"
             alt="An illustration of a cellphone with some stats"
-            layout="fill"
           />
         </$.MenuIllustration>
         <$.MenuInfo>
@@ -114,16 +121,18 @@ const Menu: React.FC = () => {
       >
         <$.MenuIllustration width={46} height={58} left={1} top={-7}>
           <Image
+            width={46}
+            height={58}
             src="/assets/menu/blog_article.png"
             alt="An illustration of an article in a webpage"
-            layout="fill"
           />
         </$.MenuIllustration>
         <$.MenuIllustration width={32} height={60} left={24} top={0}>
           <Image
+            width={32}
+            height={60}
             src="/assets/menu/blog_phone.png"
             alt="An illustration of an article in a cellphone webpage"
-            layout="fill"
           />
         </$.MenuIllustration>
         <$.MenuInfo>
@@ -133,13 +142,14 @@ const Menu: React.FC = () => {
       </$.MenuItem>
       <$.MenuItem
         style={{ translateY }}
-        onClick={() => router.push('/contato')}
+        onClick={() => router.push('/contact')}
       >
         <$.MenuIllustration width={56} height={76} left={1} top={-7}>
           <Image
+            width={56}
+            height={76}
             src="/assets/menu/contact.png"
             alt="An illustration of a cellphone wearing a headset"
-            layout="fill"
           />
         </$.MenuIllustration>
         <$.MenuInfo>

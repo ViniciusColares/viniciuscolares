@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { GetStaticProps } from 'next'
 import Image from 'next/image'
 
@@ -81,7 +81,6 @@ const Perfil = ({ duolingo }: IPerfil) => {
 
   const getExp = (lang): number | undefined => findCourse(lang)?.xp
   const getCrowns = (lang) => findCourse(lang)?.crowns
-  const getTotalCrowns = () => courses.reduce((ac, cv) => ac + cv.crowns, 0)
 
   return (
     <MainPage pageTitle="perfil">
@@ -89,7 +88,6 @@ const Perfil = ({ duolingo }: IPerfil) => {
         <Image
           src="/assets/avatar.png"
           alt="An illustration of Vinicius Colares' face"
-          layout="fixed"
           quality={100}
           width={59}
           height={80}
@@ -106,14 +104,17 @@ const Perfil = ({ duolingo }: IPerfil) => {
       <$.Intro tag="section" mb={5}>
         <Text mb={12}>
           Desenvolvendo profissionalmente para web desde <span>2010</span>,
-          trabalhei na criação de <span>dezenas</span> de websites, landing
-          pages, interfaces para sistemas e muito mais.
+          trabalhei na criação de <span>centenas</span> de websites, landing
+          pages, interfaces para sistemas, aplicativos, extensões de navegador,
+          <span>contribuições</span> em projetos open source, liderança de
+          equipe e muito mais.
         </Text>
         <Text mb={0}>
-          Sempre engajado em construir a melhor{' '}
-          <span>experiência de usuário</span> sem deixar de entregar valor para
-          o cliente, além de estar sempre estudando e aprendendo com os{' '}
-          <i style={{ textDecoration: 'line-through' }}>erros</i>{' '}
+          Amo esse poder que a tecnologia nos dá, permitindo que a gente
+          automatize tarefas e abstraia Sempre engajado em construir valor e
+          melhor <span>experiência de usuário</span> sem deixar de entregar
+          valor para o cliente, além de estar sempre estudando e aprendendo com
+          os <i style={{ textDecoration: 'line-through' }}>erros</i>{' '}
           <span>bugs</span> que enfrento.
         </Text>
       </$.Intro>
