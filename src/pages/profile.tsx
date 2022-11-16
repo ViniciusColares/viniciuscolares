@@ -88,7 +88,6 @@ const Perfil = ({ duolingo }: IPerfil) => {
         <Image
           src="/assets/avatar.png"
           alt="An illustration of Vinicius Colares' face"
-          layout="fixed"
           quality={100}
           width={59}
           height={80}

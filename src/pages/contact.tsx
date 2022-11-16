@@ -159,7 +159,12 @@ const Contato = () => {
             </$.Social>
           </Flex>
 
-          <Image width="212px" height="180px" src="/assets/social.png" />
+          <Image
+            alt="Screen with some social app icons"
+            width={212}
+            height={180}
+            src="/assets/social.png"
+          />
         </Flex>
       </Flex>
     </MainPage>

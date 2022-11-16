@@ -31,16 +31,17 @@ const Home = () => {
         mx="3vw"
       >
         <Image
+          fill={true}
+          sizes="90vw"
           src="/assets/home_illustrations.svg"
           alt="Dummy building a web page"
-          layout="fill"
         />
       </Flex>
 
       <$.CallToAction>
         <Text tag="span">Como fazer isso?</Text>
         <Button
-          onClick={() => router.push('/contato')}
+          onClick={() => router.push('/contact')}
           name="Vamos conversar"
           size="big"
         />

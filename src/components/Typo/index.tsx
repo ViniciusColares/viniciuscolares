@@ -11,14 +11,7 @@ import {
   TypographyProps
 } from 'styled-system'
 
-type Heading = SpaceProps &
-  ColorProps &
-  TypographyProps & {
-    tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
-    children: ReactNode
-  }
-
-const CustomHeading = styled.h1<HTMLHeadingElement>(
+const StyledHeading = styled.h1<React.HTMLAttributes<HTMLHeadingElement>>(
   css({
     letterSpacing: '0.7px',
     fontFamily: 'heading',
@@ -32,16 +25,24 @@ const CustomHeading = styled.h1<HTMLHeadingElement>(
   }),
   compose(space, color, typography)
 )
-const Heading: React.FC<Heading> = ({ tag = 'h1', children, ...rest }) => {
+
+type HeadingProps = ColorProps &
+  SpaceProps &
+  TypographyProps & {
+    tag?: 'h1' | 'h2' | 'h3' | 'h4' | 'h5' | 'h6'
+    children: ReactNode
+  }
+
+const Heading: React.FC<HeadingProps> = ({ tag = 'h1', children, ...rest }) => {
   return (
-    <CustomHeading as={tag} {...rest}>
+    <StyledHeading as={tag} {...rest}>
       {children}
-    </CustomHeading>
+    </StyledHeading>
   )
 }
 
-type T = React.FC<HTMLParagraphElement>
-const CustomText = styled.p<T>(
+type SystemTextProps = React.FC<HTMLParagraphElement & { color: string }>
+const CustomText = styled.p<SystemTextProps>(
   css({
     fontFamily: 'text',
     fontSize: 2,
@@ -61,11 +62,12 @@ interface Text extends SpaceProps, TypographyProps, ColorProps {
   color?: string
   children: ReactNode
 }
-const Text = ({ tag = 'p', children, ...rest }: Text) => {
+const Text = ({ tag = 'p', children = null, ...rest }: Text) => {
+  const ComponentTag = CustomText.withComponent(tag)
   return (
-    <CustomText as={tag} {...rest}>
+    <ComponentTag as={tag} {...rest}>
       {children}
-    </CustomText>
+    </ComponentTag>
   )
 }
 
