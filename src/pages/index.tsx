@@ -2,7 +2,7 @@ import React from 'react'
 import Image from 'next/image'
 import { useRouter } from 'next/router'
 
-import MainPage from '@templates/MainPage'
+import { MainLayout } from '@layouts'
 import Flex from '@components/Flex'
 import Button from '@components/Button'
 import { Text, Heading } from '@components/Typo'
@@ -13,7 +13,7 @@ const Home = () => {
   const router = useRouter()
 
   return (
-    <MainPage pageTitle="início">
+    <MainLayout pageTitle="início">
       <$.MainHeading>
         <Heading mt={2} fontSize={2}>
           Revolucione o seu mundo com
@@ -46,7 +46,7 @@ const Home = () => {
           size="big"
         />
       </$.CallToAction>
-    </MainPage>
+    </MainLayout>
   )
 }
 

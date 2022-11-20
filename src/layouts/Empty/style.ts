@@ -18,14 +18,7 @@ export const Wrapper = styled('section')(
     width: '100vw',
     height: '100vh',
     overflow: 'hidden',
-    zIndex: 0,
-    '::before': {
-      content: '""',
-      position: 'absolute',
-      bg: 'rgba(0, 0, 0, 0.35)',
-      width: '100vw',
-      height: '100vh'
-    }
+    zIndex: 0
   })
 )
 
@@ -41,15 +34,10 @@ export const Main = styled(motion.main)(
     zIndex: 1,
     transformStyle: 'preserve-3d',
     transform: 'perspective(0.5cm)',
-    background: `url('/assets/bg.png') center top no-repeat scroll, linear-gradient(to bottom left,${colors.primary1} 20%,${colors.primary2} 90%)`,
     backgroundSize: '100%',
     [medias('sm')]: {
-      height: '80vh',
-      width: '480px',
-      borderWidth: '4px',
-      borderStyle: 'solid',
-      borderColor: 'white',
-      borderRadius: '32px'
+      height: '100%',
+      width: '480px'
     }
   })
 )
