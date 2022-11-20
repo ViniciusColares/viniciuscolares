@@ -2,7 +2,7 @@ import { useState } from 'react'
 import { GetStaticProps } from 'next'
 import Image from 'next/image'
 
-import MainPage from '@templates/MainPage'
+import { MainLayout } from '@layouts'
 
 import {
   SiHtml5,
@@ -83,7 +83,7 @@ const Perfil = ({ duolingo }: IPerfil) => {
   const getCrowns = (lang) => findCourse(lang)?.crowns
 
   return (
-    <MainPage pageTitle="perfil">
+    <MainLayout pageTitle="perfil">
       <$.Profile tag="section" my={5}>
         <Image
           src="/assets/avatar.png"
@@ -439,7 +439,7 @@ const Perfil = ({ duolingo }: IPerfil) => {
           </$.CrownsCol>
         </Flex>
       </$.DuolingoSection>
-    </MainPage>
+    </MainLayout>
   )
 }
 

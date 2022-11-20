@@ -10,7 +10,7 @@ import {
   SiDevdotto
 } from 'react-icons/si'
 
-import MainPage from '@templates/MainPage'
+import { MainLayout } from '@layouts'
 import Flex from '@components/Flex'
 import Button from '@components/Button'
 import { Text, Heading } from '@components/Typo'
@@ -20,7 +20,7 @@ import Image from 'next/image'
 
 import * as $ from '@styles/pageStyles/contactStyle'
 
-const Contato = () => {
+const ContactPage = () => {
   const [firstName, setFirstName] = useState('')
   const [email, setEmail] = useState('')
   const [invalidEmail, setInvalidEmail] = useState(false)
@@ -75,7 +75,7 @@ const Contato = () => {
   }
 
   return (
-    <MainPage pageTitle="Contato">
+    <MainLayout pageTitle="Contato">
       <Flex flexDirection="column" alignItems="center" mt={4}>
         <Heading fontSize={3} textAlign="center">
           Gostou? Quer mais?!
@@ -167,8 +167,8 @@ const Contato = () => {
           />
         </Flex>
       </Flex>
-    </MainPage>
+    </MainLayout>
   )
 }
 
-export default Contato
+export default ContactPage

@@ -1,9 +1,9 @@
 import React from 'react'
 
-import MainPage from '@templates/MainPage'
+import { MainLayout } from '@layouts'
 
 const Apps = () => {
-  return <MainPage pageTitle="Apps">{}</MainPage>
+  return <MainLayout pageTitle="Apps">{}</MainLayout>
 }
 
 export default Apps

@@ -1,17 +1,17 @@
 import React from 'react'
 
-import MainPage from '@templates/MainPage'
+import { MainLayout } from '@layouts'
 import { Heading } from '@components/Typo'
 
 const Blog = () => {
   return (
-    <MainPage pageTitle="blog">
+    <MainLayout pageTitle="blog">
       <hgroup style={{ marginTop: '3vh' }}>
         <Heading fontSize={5} textAlign="center" mb={1}>
           Meu Blog
         </Heading>
       </hgroup>
-    </MainPage>
+    </MainLayout>
   )
 }
 

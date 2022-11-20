@@ -1,8 +1,9 @@
-import React, { ReactNode } from 'react'
+import React, { ReactNode, useEffect } from 'react'
 import Head from 'next/head'
 
-import Menu from './Menu'
+import Menu from '@components/Menu'
 import * as $ from './style'
+import { useRouter } from 'next/router'
 
 const MainPage = ({
   pageTitle,
@@ -11,6 +12,14 @@ const MainPage = ({
   pageTitle?: string
   children: ReactNode | ReactNode[]
 }) => {
+  const router = useRouter()
+
+  useEffect(() => {
+    if (process.env.NEXT_PUBLIC_ON_MAINTENANCE) {
+      router.push('/onMaintenance')
+    }
+  }, [])
+
   return (
     <$.Wrapper>
       <$.Main>
@@ -24,8 +33,8 @@ const MainPage = ({
             </$.Header>
           )}
           {children}
+          <Menu />
         </$.MainContent>
-        <Menu />
       </$.Main>
     </$.Wrapper>
   )

@@ -1,19 +1,9 @@
 {
   "compilerOptions": {
     "target": "ESNEXT",
-    "types": [
-      "node",
-      "jest"
-    ],
-    "typeRoots": [
-      "src/typings",
-      "node_modules/@types"
-    ],
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "types": ["node", "jest"],
+    "typeRoots": ["src/typings", "node_modules/@types"],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "baseUrl": ".",
     "allowJs": true,
     "checkJs": false,
@@ -32,7 +22,7 @@
       "@public/*": ["./public/*"],
       "@modules/*": ["./node_modules/*"],
       "@components/*": ["./src/components/*"],
-      "@templates/*": ["./src/templates/*"],
+      "@layouts": ["src/layouts"],
       "@styles/*": ["./src/styles/*"],
       "@pages/*": ["./src/pages/*"],
       "@store/*": ["./src/store/*"]
@@ -40,12 +30,6 @@
     "incremental": true
   },
   "compileOnSave": true,
-  "include": [
-    "next-env.d.ts",
-    "**/*.ts",
-    "**/*.tsx"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
 }

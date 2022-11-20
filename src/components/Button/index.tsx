@@ -1,5 +1,5 @@
 import React from 'react'
-import { IconBaseProps } from 'react-icons'
+import { IconType } from 'react-icons'
 import { VscLoading } from 'react-icons/vsc'
 import { MotionProps } from 'framer-motion'
 import { SpaceProps } from 'styled-system'
@@ -59,7 +59,7 @@ export interface ButtonProps {
   disabled?: boolean
   isLoading?: boolean
   size?: 'small' | 'medium' | 'big'
-  icon?: React.ComponentType<IconBaseProps>
+  icon?: IconType
 }
 
 export default Button
