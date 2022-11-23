@@ -1,19 +1,18 @@
-import { render, screen } from '@testing-library/react'
-
+import { screen } from '@testing-library/react'
+import { createRoot } from 'react-dom/client'
 import Button from '.'
 
 describe('Button', () => {
+  const nextApp = document.getElementById('__next')
+  const root = createRoot(nextApp!)
+
   it('it should render text inside button', () => {
-    const { container } = render(<Button name="botão" />)
+    root.render(<Button name="botão" />)
     expect(screen.getByRole('button'))
-    expect(container.firstChild).toMatchSnapshot()
   })
 
   it('it should render a loading button', () => {
-    const { container } = render(
-      <Button name="botão" isLoading data-testid="svgButton" />
-    )
+    root.render(<Button name="botão" isLoading data-testid="svgButton" />)
     expect(screen.getByTestId('svgButton'))
-    expect(container.firstChild).toMatchSnapshot()
   })
 })

@@ -31,6 +31,7 @@ export const Main = styled(motion.main)(
     width: '100vw',
     height: '100vh',
     overflow: 'hidden',
+    padding: '16px',
     zIndex: 1,
     transformStyle: 'preserve-3d',
     transform: 'perspective(0.5cm)',
