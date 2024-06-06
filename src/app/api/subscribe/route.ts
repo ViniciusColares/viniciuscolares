@@ -9,7 +9,6 @@ export async function POST(req: Request, res: Response) {
 
   const API_KEY = process.env.NEXT_PUBLIC_CONVERTKIT_API_KEY;
   const FORM_ID = process.env.NEXT_PUBLIC_CONVERTKIT_FORM_ID;
-  const SECRET_KEY = process.env.NEXT_PUBLIC_CONVERTKIT_API_SECRET_KEY;
 
   const data = {
     email,
@@ -17,7 +16,7 @@ export async function POST(req: Request, res: Response) {
   };
 
   const response = await fetch(
-    `https://api.convertkit.com/v3/forms/${FORM_ID}/subscribe?api_secret=${SECRET_KEY}`,
+    `https://api.convertkit.com/v3/forms/${FORM_ID}/subscribe`,
     {
       method: "POST",
       headers: {

@@ -3,7 +3,7 @@ import React, { Suspense, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
-import { MotionCanvasProps, motion } from "framer-motion-3d";
+import { motion } from "framer-motion-3d";
 
 function Model({ url }: { url: string }) {
   const blackHoleRef = useRef<THREE.Mesh>(null);
@@ -20,7 +20,7 @@ function Model({ url }: { url: string }) {
       initial={{ opacity: 0, scale: 0 }}
       animate={{ opacity: 1, scale: 1.2 }}
       transition={{ duration: 3 }}
-      ref={blackHoleRef}
+      ref={blackHoleRef as any}
       rotation={[0.7, 0, 0]}
     >
       <primitive object={scene} />
