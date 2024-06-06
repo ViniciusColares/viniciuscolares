@@ -11,7 +11,7 @@ const openai = new OpenAI({
 
 export const runtime = "edge";
 
-export async function POST(req: Request, res: Response) {
+export async function POST(req: Request) {
   const { messages } = await req.json();
 
   const response = await openai.chat.completions.create({
