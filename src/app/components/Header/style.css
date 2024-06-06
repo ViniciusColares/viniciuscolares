@@ -26,8 +26,16 @@ header::before {
 	perspective: 150px;
 }
 
+.hero-section form {
+	background: rgba(24, 7, 53, 0.1);
+	border-radius: 16px;
+	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+	backdrop-filter: blur(8.9px);
+	-webkit-backdrop-filter: blur(8.9px);
+}
+
 .hero-text {
-	font-size: clamp(32px, 5vw, 42px);
+	font-size: clamp(32px, 5dvw, 42px);
 	color: white;
 	font-weight: bold;
 	padding-inline: 42px;
@@ -55,6 +63,6 @@ header::before {
 
 @media (min-width: 1921px) {
 	.section--wave-transition {
-		bottom: -2svw;
+		bottom: -2dvw;
 	}
 }

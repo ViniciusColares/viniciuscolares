@@ -122,7 +122,7 @@ export default function Header() {
 						transform: "rotateX(6deg) translateY(0px) scale(1)",
 					}}
 					transition={{ duration: 3, delay: 2 }}
-					className="hero-section relative flex flex-col mx-auto max-w-4xl py-5 items-center"
+					className="hero-section relative flex flex-col mx-auto max-w-4xl py-5 items-center z-10"
 				>
 					<h1 className="hero-text">
 						Me <span className="text-purple-500">permita</span> te mostrar{" "}
@@ -133,34 +133,36 @@ export default function Header() {
 
 					<form
 						onSubmit={handleSubmitNewsletter}
-						className="flex w-full justify-center items-center gap-3 mt-8"
+						className="flex flex-col mt-6 px-4 w-full justify-center items-center max-w-[450px]"
 					>
-						<input
-							type="text"
-							value={email}
-							onChange={(event) => setEmail(event.target.value)}
-							placeholder="seu.melhor@email.com"
-							className="rounded-full p-3 max-w-[280px] text-center bg-purple-dark text-white w-full"
-						/>
-						<button
-							type="submit"
-							className="flex gap-2 items-center bg-purple-900 hover:bg-purple-dark rounded-full transition-colors py-3 px-4"
-						>
-							<PaperAirplaneIcon
-								className="cursor-pointer"
-								width={24}
-								type="submit"
+						<div className="flex w-full justify-center items-center gap-3">
+							<input
+								type="text"
+								value={email}
+								onChange={(event) => setEmail(event.target.value)}
+								placeholder="seu.melhor@email.com"
+								className="rounded-full p-3 text-center bg-purple-dark text-white w-full"
 							/>
-							ENVIAR
-						</button>
+							<button
+								type="submit"
+								className="flex gap-2 items-center bg-purple-900 hover:bg-purple-dark rounded-full transition-colors py-3 px-4"
+							>
+								<PaperAirplaneIcon
+									className="cursor-pointer"
+									width={24}
+									type="submit"
+								/>
+								ENVIAR
+							</button>
+						</div>
+						<p className="mt-2 text-sm text-purple-300">
+							Zero spam, só conteúdo sinistro e ideia mil grau.
+						</p>
 						<audio ref={audioRef} src="/galatic_sweep.wav" />
 					</form>
-					<p className="mt-2 text-sm text-purple-300">
-						Zero spam, só conteúdo sinistro e ideia mil grau.
-					</p>
 				</motion.section>
 
-				<motion.div className="w-full h-[50svh] absolute bottom-0">
+				<motion.div className="w-full h-[50dvh] absolute bottom-0">
 					<BlackHole />
 
 					<motion.div

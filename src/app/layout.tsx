@@ -17,8 +17,8 @@ type RootLayoutProps = {
 
 export default function RootLayout({ children }: RootLayoutProps) {
 	return (
-		<html lang="en" className="h-full">
-			<body className="min-h-full flex flex-col">
+		<html lang="en" className="h-[100dvh]">
+			<body className="min-h-[100dvh] flex flex-col">
 				<Header />
 				{children}
 				<Chat />
