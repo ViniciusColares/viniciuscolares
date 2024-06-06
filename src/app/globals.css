@@ -3,70 +3,35 @@
 @tailwind utilities;
 
 :root {
-  --foreground-rgb: 0, 0, 0;
-  --background-start-rgb: 214, 219, 220;
-  --background-end-rgb: 255, 255, 255;
+	--foreground-rgb: 0, 0, 0;
+	--background-start-rgb: 214, 219, 220;
+	--background-end-rgb: 255, 255, 255;
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --foreground-rgb: 242, 240, 255;
-    --background-start-rgb: 0, 0, 0;
-    --background-end-rgb: 0, 0, 0;
-  }
+	:root {
+		--foreground-rgb: 242, 240, 255;
+		--background-start-rgb: 0, 0, 0;
+		--background-end-rgb: 0, 0, 0;
+	}
 }
 
 @keyframes scroll {
-  100% {
-    background-position: -20% 100%;
-  }
+	100% {
+		background-position: -20% 100%;
+	}
 }
 
 html,
 body {
-  color: rgb(var(--foreground-rgb));
-  scroll-behavior: smooth;
+	color: rgb(var(--foreground-rgb));
+	scroll-behavior: smooth;
 }
 
-header {
-  position: relative;
-  background-image: url("~/public/stardust.png");
-}
-header::before {
-  content: "";
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: -2;
-  background-color: #2e0d68;
-  opacity: 1;
-  background-image: radial-gradient(circle at center center, #ffffff, #2e0d68),
-    repeating-radial-gradient(
-      circle at center center,
-      #ffffff,
-      #ffffff,
-      40px,
-      transparent 80px,
-      transparent 40px
-    );
-  background-blend-mode: multiply;
-}
 @layer utilities {
-  .text-balance {
-    text-wrap: balance;
-  }
-}
-
-.hero-section {
-  perspective: 150px;
-}
-.shadow {
-  -webkit-filter: drop-shadow(-30px -40px 30px rgba(0, 0, 0, 0.65));
-  filter: drop-shadow(-30px -40px 30px rgba(0, 0, 0, 0.65));
-}
-
-.fade-top-out {
-  mask-image: linear-gradient(to bottom, transparent, black 3%);
+	.text-balance {
+		text-wrap: balance;
+	}
 }
 
 /* Firefox (uncomment to work in Firefox, although other properties will not work!)  */
@@ -77,31 +42,31 @@ header::before {
 
 /* Chrome, Edge and Safari */
 *::-webkit-scrollbar {
-  height: 5px;
-  width: 5px;
+	height: 5px;
+	width: 5px;
 }
 *::-webkit-scrollbar-track {
-  border-radius: 5px;
-  background-color: transparent;
+	border-radius: 5px;
+	background-color: transparent;
 }
 
 *::-webkit-scrollbar-track:hover {
-  background-color: #2e0d68;
+	background-color: #2e0d68;
 }
 
 *::-webkit-scrollbar-track:active {
-  background-color: #2e0d68;
+	background-color: #2e0d68;
 }
 
 *::-webkit-scrollbar-thumb {
-  border-radius: 7px;
-  background-color: #2e0d68;
+	border-radius: 7px;
+	background-color: #2e0d68;
 }
 
 *::-webkit-scrollbar-thumb:hover {
-  background-color: #2e0d68;
+	background-color: #2e0d68;
 }
 
 *::-webkit-scrollbar-thumb:active {
-  background-color: #2e0d68;
+	background-color: #2e0d68;
 }

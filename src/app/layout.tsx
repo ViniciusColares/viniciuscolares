@@ -1,28 +1,28 @@
 import { Metadata } from "next";
 import { ReactNode } from "react";
 
-import Header from "./Header";
+import Header from "./components/Header/Header";
 import Chat from "./components/Chat";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Vinicius Colares' Artificial Intelligence",
-  description:
-    "I am an AI assistant designed to provide information, and answer questions related to the my career. My function is to offer support and guidance to users visiting my website.",
+	title: "Vinicius Colares",
+	description:
+		"Explore meu portfólio! Sou Vinícius Colares, desenvolvedor front-end com mais de 14 anos de experiência, especializado em React e tecnologias modernas. Ofereço soluções inovadoras para interfaces de usuário e aplicativos web. Descubra como posso ajudar você a criar suas próprias soluções tecnológicas com inteligência artificial. Vamos transformar suas ideias em realidade!",
 };
 
 type RootLayoutProps = {
-  children: ReactNode;
+	children: ReactNode;
 };
 
 export default function RootLayout({ children }: RootLayoutProps) {
-  return (
-    <html lang="en" className="h-full">
-      <body className="min-h-full flex flex-col">
-        <Header />
-        {children}
-        <Chat />
-      </body>
-    </html>
-  );
+	return (
+		<html lang="en" className="h-[100dvh]">
+			<body className="min-h-[100dvh] flex flex-col">
+				<Header />
+				{children}
+				<Chat />
+			</body>
+		</html>
+	);
 }
