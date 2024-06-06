@@ -1,0 +1,60 @@
+header {
+	position: relative;
+	background-image: url("~/public/stardust.png");
+}
+header::before {
+	content: "";
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	z-index: -2;
+	background-color: #2e0d68;
+	opacity: 1;
+	background-image: radial-gradient(circle at center center, #ffffff, #2e0d68),
+		repeating-radial-gradient(
+			circle at center center,
+			#ffffff,
+			#ffffff,
+			40px,
+			transparent 80px,
+			transparent 40px
+		);
+	background-blend-mode: multiply;
+}
+
+.hero-section {
+	perspective: 150px;
+}
+
+.hero-text {
+	font-size: clamp(32px, 5vw, 42px);
+	color: white;
+	font-weight: bold;
+	padding-inline: 42px;
+	text-align: center;
+	max-width: 750px;
+}
+
+.fade-top-out {
+	mask-image: linear-gradient(to bottom, transparent, black 3%);
+}
+
+.section--wave-transition {
+	position: absolute;
+	width: 100%;
+	min-width: 1720px;
+	bottom: 0;
+	left: 50%;
+	z-index: 10;
+}
+
+.section--wave-transition path {
+	-webkit-filter: drop-shadow(-30px -40px 30px rgba(0, 0, 0, 0.65));
+	filter: drop-shadow(-30px -40px 30px rgba(0, 0, 0, 0.65));
+}
+
+@media (min-width: 1921px) {
+	.section--wave-transition {
+		bottom: -2svw;
+	}
+}
