@@ -14,6 +14,9 @@ const config: Config = {
       xl: "1440px",
     },
     colors: {
+      yellow: {
+        default: "#fbe500",
+      },
       purple: {
         "50": "#f5f3ff",
         "100": "#ede8ff",
@@ -45,6 +48,8 @@ const config: Config = {
     fontFamily: {},
     extend: {
       backgroundImage: {
+        lines: "url('~/public/60-lines.png')",
+        startdust: "url('~/public/stardust.png')",
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
@@ -55,6 +60,9 @@ const config: Config = {
       },
       borderRadius: {
         "4xl": "2rem",
+      },
+      animation: {
+        space: "scroll 20s linear infinite",
       },
     },
   },

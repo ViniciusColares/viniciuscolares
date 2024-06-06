@@ -3,10 +3,11 @@
 import { Input } from "@headlessui/react";
 import { useChat } from "ai/react";
 import Image from "next/image";
-import { KeyboardEvent, useEffect, useRef } from "react";
+import { KeyboardEvent, useEffect, useRef, useState } from "react";
 import { UserCircleIcon, PaperAirplaneIcon } from "@heroicons/react/24/outline";
 
 export default function Chat() {
+  const [isOpenChat, setIsOpenChat] = useState(true);
   const chatContainer = useRef<HTMLDivElement>(null);
   const { messages, input, handleInputChange, handleSubmit } = useChat({
     api: "/api/openai",
@@ -32,6 +33,11 @@ export default function Chat() {
     }
   };
 
+  const handleImperativeSubmitForm = () => {
+    const el = document.querySelector("form[name='chat']") as HTMLFormElement;
+    el?.requestSubmit();
+  };
+
   const renderAvatar = (isUser: boolean) => {
     return isUser ? (
       <UserCircleIcon className="flex self-start ml-2" width={32} height={32} />
@@ -41,6 +47,7 @@ export default function Chat() {
         alt="Avatar"
         width={32}
         height={32}
+        priority={false}
         src={"/no-bg_face.png"}
       />
     );
@@ -52,60 +59,28 @@ export default function Chat() {
 
   return (
     <section
-      style={{ maxHeight: "calc(100dvh - 100px)" }}
-      className="grid grid-rows-[1fr_50px] w-full max-w-screen-lg mx-auto pb-4 pl-4 gap-4"
+      onBlur={() => setIsOpenChat(false)}
+      className="fixed flex flex-col right-4 bottom-0 w-full max-w-96 gap-4 z-20"
     >
       <div
         ref={chatContainer}
-        className="overflow-y-auto max-h-[79svh] flex flex-col flex-1 space-y-4 pr-4 fade-top-out"
+        className={`${
+          isOpenChat ? "translate-y-0" : "translate-y-144"
+        } flex flex-col flex-1 overflow-y-auto max-h-[50svh] text-white space-y-4 px-4
+        pt-4 pb-4 bg-purple-dark bg-opacity-95 rounded-xl fade-top-out -z-10 transition-all`}
       >
-        <div className="flex mb-auto mt-10">
+        <div className="flex">
           <Image
             className="flex xs:hidden self-start mr-2 mt-1"
             alt="Avatar"
-            width={42}
-            height={42}
+            width={32}
+            height={32}
+            priority={false}
             src={"/no-bg_face.png"}
           />
           <div className="flex flex-col space-y-3">
-            <div className="flex w-fit p-2 bg-purple-100 bg-opacity-5 rounded-md">
-              <h1 className="text-2xl">Oi! Me chamo Vinícius Colares</h1>
-            </div>
-            <div className="flex w-fit p-2 bg-purple-100 bg-opacity-5 rounded-md">
-              <p>
-                Sou engenheiro de software front-end desde 2010, especialista em
-                UX/UI, atualmente focado no ecosistema React, mas já fiz de tudo
-                um pouco na web.
-              </p>
-            </div>
-            <div className="flex w-fit p-2 bg-purple-100 bg-opacity-5 rounded-md">
-              <p>
-                Quando eu cheguei aqui, nem tudo era mato, mas era tudo tabela.
-                Avancei no mercado junto com o movimento{" "}
-                <a href="https://tableless.com.br" target="_blank">
-                  Tableless
-                </a>{" "}
-                e vivi a guerra dos navegadores e vi nascer todo o movimento que
-                transformou a forma de se fazer front-end.
-              </p>
-            </div>
-            <div className="flex w-fit p-2 bg-purple-100 bg-opacity-5 rounded-md">
-              <p>
-                Já fui o ninja do JQuery, evolui minha escrita com Coffee
-                Script, aprendi split code com Require.js, me viciei em
-                automatizar tarefas com Gulp.js, usei inúmeros frameworks CSS do
-                mercado, já criei plugins, extensões... Vixe! Muita coisa.
-              </p>
-            </div>
-            <div className="flex w-fit p-2 bg-purple-100 bg-opacity-5 rounded-md">
-              <p>
-                Quiser saber qualquer coisa, é só me perguntar, estou à
-                disposição pra responder, e se quiser me enviar uma proposta é
-                só clicar ali em cima, vou ficar muito feliz.
-              </p>
-            </div>
-            <div className="flex w-fit p-2 bg-purple-100 bg-opacity-5 rounded-md">
-              <p>O que você quer saber?</p>
+            <div className="flex w-fit p-2 bg-purple-950 bg-opacity-25 rounded-md">
+              <p>Oi! Como eu posso te ajudar?</p>
             </div>
           </div>
         </div>
@@ -118,7 +93,11 @@ export default function Chat() {
               className={`flex ${isUser && "flex-row-reverse"}`}
             >
               {renderAvatar(isUser)}
-              <p className="flex w-fit p-2 bg-purple-100 bg-opacity-5 rounded-md">
+              <p
+                className={`flex w-fit p-2 ${
+                  isUser ? "bg-gray-950" : "bg-purple-950"
+                }  ${isUser ? "bg-opacity-15" : "bg-opacity-25"} rounded-md`}
+              >
                 {msg.content}
               </p>
             </div>
@@ -126,24 +105,30 @@ export default function Chat() {
         })}
       </div>
 
-      <form className="flex space-x-4 pr-4" onSubmit={handleSubmit}>
+      <form
+        name="chat"
+        className="flex space-x-4 p-2 mb-4 rounded-full bg-purple-dark bg-opacity-95"
+        onSubmit={handleSubmit}
+      >
         <Input
           type="text"
           value={input}
           autoFocus={true}
-          data-autoComplete={false}
+          autoComplete="off"
           onKeyDown={handleKeyDown}
           onChange={handleInputChange}
-          placeholder="Write me your question..."
-          className="flex-grow p-2 rounded bg-opacity-30 bg-gray-950 text-purple-50 focus:outline-none resize-none"
+          placeholder="Me pergunte o que precisar..."
+          className="flex-grow p-2 bg-[transparent] text-purple-50 focus:outline-none resize-none"
+          onFocus={() => setIsOpenChat(true)}
         />
-        <button
-          type="submit"
-          className="uppercase text-xs justify-center text-purple-100"
-        >
-          <PaperAirplaneIcon width={32} type="submit" />
-          <span>send</span>
-        </button>
+        {input.length > 6 && (
+          <PaperAirplaneIcon
+            className="cursor-pointer"
+            onClick={handleImperativeSubmitForm}
+            width={32}
+            type="submit"
+          />
+        )}
       </form>
     </section>
   );

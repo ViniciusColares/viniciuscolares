@@ -18,22 +18,26 @@
 
 @keyframes scroll {
   100% {
-    background-position: 0px 400%;
+    background-position: -20% 100%;
   }
 }
 
+html,
 body {
   color: rgb(var(--foreground-rgb));
-  background-image: url("~/public/stardust.png");
-  animation: scroll 100s linear infinite;
+  scroll-behavior: smooth;
 }
 
-body::before {
+header {
+  position: relative;
+  background-image: url("~/public/stardust.png");
+}
+header::before {
   content: "";
   position: absolute;
   width: 100%;
   height: 100%;
-  z-index: -1;
+  z-index: -2;
   background-color: #2e0d68;
   opacity: 1;
   background-image: radial-gradient(circle at center center, #ffffff, #2e0d68),
@@ -47,15 +51,22 @@ body::before {
     );
   background-blend-mode: multiply;
 }
-
 @layer utilities {
   .text-balance {
     text-wrap: balance;
   }
 }
 
+.hero-section {
+  perspective: 150px;
+}
+.shadow {
+  -webkit-filter: drop-shadow(-30px -40px 30px rgba(0, 0, 0, 0.65));
+  filter: drop-shadow(-30px -40px 30px rgba(0, 0, 0, 0.65));
+}
+
 .fade-top-out {
-  mask-image: linear-gradient(to bottom, transparent, black 12%);
+  mask-image: linear-gradient(to bottom, transparent, black 3%);
 }
 
 /* Firefox (uncomment to work in Firefox, although other properties will not work!)  */
