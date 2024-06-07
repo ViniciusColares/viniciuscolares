@@ -64,7 +64,7 @@ export default function Chat() {
 		>
 			<div
 				ref={chatContainer}
-				className={`${
+				className={`text-white ${
 					isOpenChat ? "translate-y-0" : "translate-y-144"
 				} flex flex-col flex-1 overflow-y-auto max-h-[50dvh] text-white space-y-4 px-4
         pt-4 pb-4 bg-purple-dark bg-opacity-95 rounded-xl fade-top-out -z-10 transition-all`}

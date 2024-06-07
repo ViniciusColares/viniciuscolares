@@ -1,5 +1,7 @@
 import { Metadata } from "next";
 import { ReactNode } from "react";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import Header from "./components/Header/Header";
 import Chat from "./components/Chat";
@@ -22,6 +24,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
 				<Header />
 				{children}
 				<Chat />
+				<Analytics />
+				<SpeedInsights />
 			</body>
 		</html>
 	);

@@ -7,9 +7,8 @@ import { ParallaxProvider } from "react-scroll-parallax";
 import { FaDev, FaGithub, FaLinkedin, FaStackOverflow } from "react-icons/fa";
 import { FormEvent, useState } from "react";
 import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
-import "./style.css";
-import Wave01 from "@/app/assets/waves/wave01";
 import Wave02 from "@/app/assets/waves/wave02";
+import "./style.css";
 
 const BlackHole = dynamic(() => import("../BlackHole"), {
 	ssr: false,
@@ -63,8 +62,8 @@ export default function Header() {
 									alt="Smiling Cartoon Face"
 								/>
 								<div className="flex flex-col items-center">
-									<span className="text-2xl">Vinicius</span>
-									<span className="text-2xl">Colares</span>
+									<span className="text-2xl text-white">Vinicius</span>
+									<span className="text-2xl text-white">Colares</span>
 								</div>
 							</div>
 						</a>
@@ -94,19 +93,19 @@ export default function Header() {
 							href="https://www.linkedin.com/in/viniciuscolares/"
 							target="_blank"
 						>
-							<FaLinkedin size={21} />
+							<FaLinkedin color="fill-white" size={21} />
 						</a>
 						<a
 							href="https://pt.stackoverflow.com/users/7922/vinicius-colares"
 							target="_blank"
 						>
-							<FaStackOverflow size={21} />
+							<FaStackOverflow color="fill-white" size={21} />
 						</a>
 						<a href="https://github.com/ViniciusColares" target="_blank">
-							<FaGithub size={21} />
+							<FaGithub color="fill-white" size={21} />
 						</a>
 						<a href="https://dev.to/viniciuscolares" target="_blank">
-							<FaDev size={21} />
+							<FaDev color="fill-white" size={21} />
 						</a>
 					</div>
 				</motion.nav>
