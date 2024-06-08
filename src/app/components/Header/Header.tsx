@@ -1,8 +1,9 @@
 "use client";
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import Image from "next/image";
 import dynamic from "next/dynamic";
 import { motion } from "framer-motion";
+import { z } from "zod";
 import { ParallaxProvider } from "react-scroll-parallax";
 import { FaDev, FaGithub, FaLinkedin, FaStackOverflow } from "react-icons/fa";
 import { FormEvent, useState } from "react";
@@ -16,8 +17,8 @@ const BlackHole = dynamic(() => import("../BlackHole"), {
 
 export default function Header() {
   const [email, setEmail] = useState("");
-  const [message, setMessage] = useState("");
   const audioRef = useRef<HTMLAudioElement>(null);
+  const newsletterFormSchema = z.string().email({ message: "Email inválido" });
 
   async function handleSubmitNewsletter(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
@@ -28,17 +29,11 @@ export default function Header() {
       body: JSON.stringify({ email }),
     });
 
-    const data = await response.json();
-
     if (response.ok) {
       if (audioRef.current) {
         audioRef.current.volume = 0.2;
         audioRef.current.play();
       }
-      setMessage("Subscription successful!");
-      setEmail("");
-    } else {
-      setMessage(data.error || "Something went wrong");
     }
   }
 
@@ -93,32 +88,26 @@ export default function Header() {
               href="https://www.linkedin.com/in/viniciuscolares/"
               target="_blank"
             >
-              <FaLinkedin color="fill-white" size={21} />
+              <FaLinkedin className="fill-white" size={21} />
             </a>
             <a
               href="https://pt.stackoverflow.com/users/7922/vinicius-colares"
               target="_blank"
             >
-              <FaStackOverflow color="fill-white" size={21} />
+              <FaStackOverflow className="fill-white" size={21} />
             </a>
             <a href="https://github.com/ViniciusColares" target="_blank">
-              <FaGithub color="fill-white" size={21} />
+              <FaGithub className="fill-white" size={21} />
             </a>
             <a href="https://dev.to/viniciuscolares" target="_blank">
-              <FaDev color="fill-white" size={21} />
+              <FaDev className="fill-white" size={21} />
             </a>
           </div>
         </motion.nav>
 
         <motion.section
-          initial={{
-            opacity: 0,
-            y: -50,
-          }}
-          animate={{
-            opacity: 1,
-            y: 0,
-          }}
+          initial={{ opacity: 0, y: -50 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 2 }}
           className="hero-section max-w-4xl py-5"
         >
@@ -139,17 +128,14 @@ export default function Header() {
                 value={email}
                 onChange={(event) => setEmail(event.target.value)}
                 placeholder="seu.melhor@email.com"
-                className="rounded-full p-3 text-center bg-purple-dark text-white w-full"
+                className="rounded-full p-3 text-white text-center bg-purple-dark text-white w-full"
               />
               <button
                 type="submit"
-                className="flex gap-2 items-center bg-purple-900 hover:bg-purple-dark rounded-full transition-colors py-3 px-4"
+                disabled={!newsletterFormSchema.safeParse(email).success}
+                className="flex font-medium disabled:bg-gray-400 disabled:hover:cursor-not-allowed disabled:text-gray-600 gap-2 items-center bg-purple-900 hover:bg-purple-dark rounded-full transition-colors py-3 px-4"
               >
-                <PaperAirplaneIcon
-                  className="cursor-pointer"
-                  width={24}
-                  type="submit"
-                />
+                <PaperAirplaneIcon width={24} type="submit" />
                 ENVIAR
               </button>
             </div>

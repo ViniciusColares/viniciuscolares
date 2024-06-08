@@ -9,7 +9,7 @@ import {
   UserCircleIcon,
   PaperAirplaneIcon,
   ChatBubbleOvalLeftEllipsisIcon,
-  MinusIcon,
+  XMarkIcon,
 } from "@heroicons/react/24/outline";
 
 export default function Chat() {
@@ -98,7 +98,7 @@ export default function Chat() {
       >
         <ChatBubbleOvalLeftEllipsisIcon
           width={64}
-          className="shadow-lg bg-purple-950 text-white p-3 rounded-full"
+          className="shadow-lg fill-white bg-purple-950 text-white p-3 rounded-full"
         />
       </motion.div>
 
@@ -109,20 +109,19 @@ export default function Chat() {
         transition={{
           type: "just",
         }}
-        className="flex flex-col gap-2 bg-purple-dark min-h-60 bg-opacity-95 rounded-3xl"
+        className="flex flex-col relative gap-2 bg-purple-dark min-h-60 bg-opacity-95 rounded-3xl"
       >
-        <div className="flex justify-end px-4 pt-2">
-          <MinusIcon
-            height={24}
+        <div className="absolute -right-3 -top-5 justify-end px-4 pt-2 z-20 cursor-pointer">
+          <XMarkIcon
+            height={36}
             onClick={() => setIsOpenChat(false)}
-            className="cursor-pointer fill-purple-50"
+            className="bg-purple-700 rounded-full p-2 hover:scale-125 transition-transform"
           />
         </div>
 
         <div
           ref={chatContent}
-          className={`flex flex-col flex-1 relative overflow-y-auto h-full max-h-[78svh] md:max-h-[50svh]
-					text-white space-y-4 px-4 pt-2 fade-scroll-out`}
+          className={`flex flex-col flex-1 relative overflow-y-auto h-full max-h-[78svh] md:max-h-[50svh] text-white space-y-4 px-4 pt-6 fade-scroll-out`}
         >
           <div className="flex">
             <Image
