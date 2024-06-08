@@ -1,5 +1,7 @@
 import { Metadata } from "next";
 import { ReactNode } from "react";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 import Header from "./components/Header/Header";
 import Chat from "./components/Chat";
@@ -8,7 +10,7 @@ import "./globals.css";
 export const metadata: Metadata = {
 	title: "Vinicius Colares",
 	description:
-		"Explore meu portfólio! Sou Vinícius Colares, desenvolvedor front-end com mais de 14 anos de experiência, especializado em React e tecnologias modernas. Ofereço soluções inovadoras para interfaces de usuário e aplicativos web. Descubra como posso ajudar você a criar suas próprias soluções tecnológicas com inteligência artificial. Vamos transformar suas ideias em realidade!",
+		"Sou Vinícius Colares, desenvolvedor web com mais de 14 anos de experiência, especializado em desenvolvimento de interfaces e experiências. Ofereço soluções inovadoras para interfaces de usuário e aplicativos web. Descubra como posso ajudar você a criar suas próprias soluções tecnológicas com inteligência artificial. Vamos transformar suas ideias em realidade!",
 };
 
 type RootLayoutProps = {
@@ -22,6 +24,8 @@ export default function RootLayout({ children }: RootLayoutProps) {
 				<Header />
 				{children}
 				<Chat />
+				<Analytics />
+				<SpeedInsights />
 			</body>
 		</html>
 	);
