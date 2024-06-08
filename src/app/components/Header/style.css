@@ -1,68 +1,78 @@
 header {
-	position: relative;
-	background-image: url("~/public/stardust.png");
+  position: relative;
+  background-image: url("~/public/stardust.png");
 }
 header::before {
-	content: "";
-	position: absolute;
-	width: 100%;
-	height: 100%;
-	z-index: -2;
-	background-color: #2e0d68;
-	opacity: 1;
-	background-image: radial-gradient(circle at center center, #ffffff, #2e0d68),
-		repeating-radial-gradient(
-			circle at center center,
-			#ffffff,
-			#ffffff,
-			40px,
-			transparent 80px,
-			transparent 40px
-		);
-	background-blend-mode: multiply;
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  z-index: -2;
+  background-color: #2e0d68;
+  opacity: 1;
+  background-image: radial-gradient(circle at center center, #ffffff, #2e0d68),
+    repeating-radial-gradient(
+      circle at center center,
+      #ffffff,
+      #ffffff,
+      40px,
+      transparent 80px,
+      transparent 40px
+    );
+  background-blend-mode: multiply;
 }
 
 .hero-section {
-	perspective: 150px;
+  perspective: 150px;
+  height: 46dvh;
+  justify-content: center;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  margin-inline: auto;
+  justify-items: center;
+  align-items: center;
+  z-index: 1;
 }
 
 .hero-section form {
-	background: rgba(24, 7, 53, 0.1);
-	border-radius: 16px;
-	box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
-	backdrop-filter: blur(8.9px);
-	-webkit-backdrop-filter: blur(8.9px);
+  background: rgba(24, 7, 53, 0.1);
+  border-radius: 16px;
+  box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(8.9px);
+  -webkit-backdrop-filter: blur(8.9px);
 }
 
 .hero-text {
-	font-size: clamp(32px, 5dvw, 42px);
-	color: white;
-	font-weight: bold;
-	padding-inline: 42px;
-	text-align: center;
-	max-width: 750px;
+  font-size: clamp(34px, 4svw, 44px);
+  color: white;
+  font-weight: bold;
+  padding-inline: 42px;
+  text-align: center;
+  max-width: 750px;
+  line-height: 6svh;
 }
 
-.fade-top-out {
-	mask-image: linear-gradient(to bottom, transparent, black 3%);
+.fade-scroll-out {
+  mask-image: linear-gradient(to bottom, transparent, black 40px);
 }
 
 .section--wave-transition {
-	position: absolute;
-	width: 100%;
-	min-width: 1720px;
-	bottom: 0;
-	left: 50%;
-	z-index: 10;
+  position: absolute;
+  width: 100%;
+  min-width: 1720px;
+  bottom: 0;
+  left: 50%;
+  z-index: 10;
 }
 
 .section--wave-transition path {
-	-webkit-filter: drop-shadow(-30px -40px 30px rgba(0, 0, 0, 0.65));
-	filter: drop-shadow(-30px -40px 30px rgba(0, 0, 0, 0.65));
+  -webkit-filter: drop-shadow(-30px -40px 30px rgba(0, 0, 0, 0.65));
+  filter: drop-shadow(-30px -40px 30px rgba(0, 0, 0, 0.65));
 }
 
 @media (min-width: 1921px) {
-	.section--wave-transition {
-		bottom: -2dvw;
-	}
+  .section--wave-transition {
+    bottom: -2dvw;
+  }
 }
