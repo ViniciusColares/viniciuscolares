@@ -1,40 +1,68 @@
 "use client";
-import { useEffect, useRef } from "react";
+import { useRef } from "react";
 import Image from "next/image";
-import dynamic from "next/dynamic";
-import { motion } from "framer-motion";
+import { motion, useAnimation } from "framer-motion";
 import { z } from "zod";
 import { ParallaxProvider } from "react-scroll-parallax";
 import { FaDev, FaGithub, FaLinkedin, FaStackOverflow } from "react-icons/fa";
 import { FormEvent, useState } from "react";
 import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
 import Wave02 from "@/app/assets/waves/wave02";
+import BlackHole from "../BlackHole";
 import "./style.css";
 
-const BlackHole = dynamic(() => import("../BlackHole"), {
-  ssr: false,
-});
-
 export default function Header() {
+  // LOCAL STATE
   const [email, setEmail] = useState("");
+  const inputControl = useAnimation();
+
+  // REF
   const audioRef = useRef<HTMLAudioElement>(null);
+  const blackHoleRef = useRef<HTMLCanvasElement>(null);
+  const emailFieldRef = useRef<HTMLInputElement>(null);
+
+  // FORM SCHEMA
   const newsletterFormSchema = z.string().email({ message: "Email inválido" });
+
+  // DERIVED STATE
+  const isValidEmail = newsletterFormSchema.safeParse(email).success;
+  const initialStateControl = { y: 0 };
+
+  // METHODS
+  const startAnimation = async () => {
+    await inputControl.start({
+      width: 0,
+      transition: {
+        type: "spring",
+        stiffness: 80,
+        damping: 30,
+        mass: 100,
+        delay: 1,
+      },
+    });
+
+    await inputControl.start({ y: 200 });
+
+    inputControl.start(initialStateControl);
+  };
 
   async function handleSubmitNewsletter(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
+    // if (!newsletterFormSchema.safeParse(email).success) return;
 
-    const response = await fetch("/api/subscribe", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ email }),
-    });
+    // const response = await fetch("/api/subscribe", {
+    //   method: "POST",
+    //   headers: { "Content-Type": "application/json" },
+    //   body: JSON.stringify({ email }),
+    // });
 
-    if (response.ok) {
-      if (audioRef.current) {
-        audioRef.current.volume = 0.2;
-        audioRef.current.play();
-      }
+    // if (response.ok) {
+    if (audioRef.current) {
+      audioRef.current.volume = 0.2;
+      audioRef.current.play();
+      startAnimation();
     }
+    // }
   }
 
   return (
@@ -57,16 +85,16 @@ export default function Header() {
                   alt="Smiling Cartoon Face"
                 />
                 <div className="flex flex-col items-center">
-                  <span className="text-2xl text-white">Vinicius</span>
-                  <span className="text-2xl text-white">Colares</span>
+                  <span className="text-2xl text-purple-50">Vinicius</span>
+                  <span className="text-2xl text-purple-50">Colares</span>
                 </div>
               </div>
             </a>
           </div>
-          <div className="gap-6 justify-evenly hidden md:flex">
+          <div className="gap-6 justify-evenly hidden md:flex opacity-30">
             <a
               href="#!"
-              className="text-center cursor-not-allowed text-purple-200 opacity-30"
+              className="text-center cursor-not-allowed text-purple-200"
             >
               <span className="block font-bold text-xs bg-yellow-default text-purple-900 rounded-full">
                 EM BREVE
@@ -75,7 +103,7 @@ export default function Header() {
             </a>
             <a
               href="#!"
-              className="text-center cursor-not-allowed text-purple-200 opacity-30"
+              className="text-center cursor-not-allowed text-purple-200"
             >
               <span className="block font-bold text-xs bg-yellow-default text-purple-900 rounded-full">
                 EM BREVE
@@ -88,19 +116,19 @@ export default function Header() {
               href="https://www.linkedin.com/in/viniciuscolares/"
               target="_blank"
             >
-              <FaLinkedin className="fill-white" size={21} />
+              <FaLinkedin className="stroke-purple-50" size={21} />
             </a>
             <a
               href="https://pt.stackoverflow.com/users/7922/vinicius-colares"
               target="_blank"
             >
-              <FaStackOverflow className="fill-white" size={21} />
+              <FaStackOverflow className="stroke-purple-50" size={21} />
             </a>
             <a href="https://github.com/ViniciusColares" target="_blank">
-              <FaGithub className="fill-white" size={21} />
+              <FaGithub className="stroke-purple-50" size={21} />
             </a>
             <a href="https://dev.to/viniciuscolares" target="_blank">
-              <FaDev className="fill-white" size={21} />
+              <FaDev className="stroke-purple-50" size={21} />
             </a>
           </div>
         </motion.nav>
@@ -122,22 +150,34 @@ export default function Header() {
             onSubmit={handleSubmitNewsletter}
             className="flex flex-col mt-6 px-4 w-full justify-center items-center max-w-[450px]"
           >
+            <p className="mb-2 text-sm text-purple-300">
+              Inscreva-se na minha lista de transmissão
+            </p>
             <div className="flex w-full justify-center items-center gap-3">
-              <input
-                type="text"
-                value={email}
-                onChange={(event) => setEmail(event.target.value)}
-                placeholder="seu.melhor@email.com"
-                className="rounded-full p-3 text-white text-center bg-purple-dark text-white w-full"
-              />
-              <button
-                type="submit"
-                disabled={!newsletterFormSchema.safeParse(email).success}
-                className="flex font-medium disabled:bg-gray-400 disabled:hover:cursor-not-allowed disabled:text-gray-600 gap-2 items-center bg-purple-900 hover:bg-purple-dark rounded-full transition-colors py-3 px-4"
+              <motion.div
+                animate={inputControl}
+                initial={initialStateControl}
+                className="flex relative w-full h-12 justify-center"
               >
-                <PaperAirplaneIcon width={24} type="submit" />
-                ENVIAR
-              </button>
+                <input
+                  // required
+                  type="email"
+                  value={email}
+                  ref={emailFieldRef}
+                  onChange={(event) => setEmail(event.target.value)}
+                  placeholder="seu.melhor@email.com"
+                  className="absolute rounded-full p-3 text-purple-50 text-center bg-purple-dark w-full"
+                />
+                <motion.button
+                  initial={{ scale: 0 }}
+                  animate={{ scale: isValidEmail ? 1 : 0 }}
+                  transition={{ type: "spring" }}
+                  type="submit"
+                  className="absolute right-3 top-2"
+                >
+                  <PaperAirplaneIcon width={32} type="submit" />
+                </motion.button>
+              </motion.div>
             </div>
             <p className="mt-2 text-sm text-purple-300">
               Zero spam, só conteúdo sinistro e ideia mil grau.
@@ -147,11 +187,11 @@ export default function Header() {
         </motion.section>
 
         <motion.div className="w-full h-[50dvh] absolute bottom-0">
-          <BlackHole />
+          <BlackHole ref={blackHoleRef} />
 
           <motion.div
-            initial={{ y: 320, transform: "translateX(-50%)" }}
-            animate={{ y: 0 }}
+            initial={{ transform: "translate(-50%, 320px)" }}
+            animate={{ transform: "translate(-50%, 0px)" }}
             transition={{ duration: 2.25, delay: 1, ease: "easeOut" }}
             className="section--wave-transition"
           >

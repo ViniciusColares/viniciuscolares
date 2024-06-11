@@ -98,7 +98,7 @@ export default function Chat() {
       >
         <ChatBubbleOvalLeftEllipsisIcon
           width={64}
-          className="shadow-lg fill-white bg-purple-950 text-white p-3 rounded-full"
+          className="shadow-lg fill-white bg-purple-950 stroke-purple-50 p-3 rounded-full"
         />
       </motion.div>
 
@@ -115,7 +115,7 @@ export default function Chat() {
           <XMarkIcon
             height={36}
             onClick={() => setIsOpenChat(false)}
-            className="bg-purple-700 rounded-full p-2 hover:scale-125 transition-transform"
+            className="bg-purple-700 rounded-full p-2 hover:scale-125 transition-transform stroke-purple-50"
           />
         </div>
 
@@ -152,7 +152,7 @@ export default function Chat() {
                     isUser ? "bg-opacity-15" : "bg-opacity-25"
                   } rounded-md ${isUser ? "items-end" : ""}`}
                 >
-                  <p>{msg.content}</p>
+                  <p className="text-purple-50">{msg.content}</p>
                 </div>
               </div>
             );
@@ -162,7 +162,11 @@ export default function Chat() {
         <form
           name="chat"
           className="flex space-x-4 p-2 rounded-full bg-purple-dark bg-opacity-95"
-          onSubmit={handleSubmit}
+          onSubmit={(event) => {
+            console.log({ event });
+            if (input?.length == 0) return;
+            handleSubmit(event);
+          }}
         >
           <Input
             type="text"
@@ -174,15 +178,13 @@ export default function Chat() {
             className="flex-grow p-2 bg-[transparent] text-purple-50 focus:outline-none resize-none shadow-lg"
             onFocus={() => setIsOpenChat(true)}
           />
-          {input.length > 6 && (
-            <button type="submit">
-              <PaperAirplaneIcon
-                className="cursor-pointer"
-                width={32}
-                type="submit"
-              />
-            </button>
-          )}
+          <button type="submit">
+            <PaperAirplaneIcon
+              className="cursor-pointer stroke-purple-50"
+              width={32}
+              type="submit"
+            />
+          </button>
         </form>
       </motion.div>
     </section>
