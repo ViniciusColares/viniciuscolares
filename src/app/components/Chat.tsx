@@ -14,7 +14,6 @@ import {
 
 export default function Chat() {
   // Animation controls
-  const triggerControl = useAnimation();
   const chatControl = useAnimation();
 
   // Ref controls
@@ -73,27 +72,20 @@ export default function Chat() {
       if (!chatContainer?.current) return;
 
       if (isOpenChat) {
-        await triggerControl.start({ y: 64, rotate: -360, scale: 0 });
         await chatControl.start({ y: 0, scale: 1 });
       } else {
         await chatControl.start({
           y: chatContainer?.current?.offsetHeight + 20,
           scale: 0,
         });
-        await triggerControl.start({ y: 0, rotate: 0, scale: 1 });
       }
     })();
-  }, [isOpenChat, triggerControl, chatControl]);
+  }, [isOpenChat, chatControl]);
 
   return (
     <section className="fixed justify-end bottom-0 right-0 px-3 pb-3 w-full gap-4 z-20 md:max-w-128">
       <motion.div
-        initial={{ y: 64, rotate: -360, scale: 0 }}
-        animate={triggerControl}
-        transition={{
-          type: "just",
-        }}
-        className="flex absolute bottom-3 right-3 shrink ml-auto cursor-pointer"
+        className="flex absolute bottom-3 right-3 shrink ml-auto cursor-pointer animate-bounce"
         onClick={() => setIsOpenChat(true)}
       >
         <ChatBubbleOvalLeftEllipsisIcon
@@ -109,7 +101,7 @@ export default function Chat() {
         transition={{
           type: "just",
         }}
-        className="flex flex-col relative gap-2 bg-purple-dark min-h-60 bg-opacity-95 rounded-3xl"
+        className="flex flex-col shadow-xl relative gap-2 bg-purple-dark min-h-60 bg-opacity-95 rounded-3xl"
       >
         <div className="absolute -right-3 -top-5 justify-end px-4 pt-2 z-20 cursor-pointer">
           <XMarkIcon
@@ -163,7 +155,7 @@ export default function Chat() {
           name="chat"
           className="flex space-x-4 p-2 rounded-full bg-purple-dark bg-opacity-95"
           onSubmit={(event) => {
-            console.log({ event });
+            event.preventDefault();
             if (input?.length == 0) return;
             handleSubmit(event);
           }}

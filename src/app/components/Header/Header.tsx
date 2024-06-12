@@ -26,43 +26,48 @@ export default function Header() {
 
   // DERIVED STATE
   const isValidEmail = newsletterFormSchema.safeParse(email).success;
-  const initialStateControl = { y: 0 };
+  const initialStateControl = { width: "100%" };
 
   // METHODS
   const startAnimation = async () => {
     await inputControl.start({
-      width: 0,
+      width: 12,
       transition: {
         type: "spring",
-        stiffness: 80,
-        damping: 30,
-        mass: 100,
-        delay: 1,
+        clamp: true,
+        delay: 0.2,
       },
     });
 
-    await inputControl.start({ y: 200 });
-
+    setEmail("");
+    await inputControl.start({ width: 0, y: 150 });
+    await inputControl.start({ y: 0 });
     inputControl.start(initialStateControl);
   };
 
   async function handleSubmitNewsletter(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    // if (!newsletterFormSchema.safeParse(email).success) return;
+    if (!newsletterFormSchema.safeParse(email).success) return;
 
-    // const response = await fetch("/api/subscribe", {
-    //   method: "POST",
-    //   headers: { "Content-Type": "application/json" },
-    //   body: JSON.stringify({ email }),
-    // });
+    const response = await fetch("/api/subscribe", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ email }),
+    });
 
-    // if (response.ok) {
-    if (audioRef.current) {
-      audioRef.current.volume = 0.2;
-      audioRef.current.play();
-      startAnimation();
+    if (response.ok) {
+      if (audioRef.current) {
+        audioRef.current.volume = 0.2;
+        audioRef.current.play();
+        startAnimation();
+      }
+    } else {
+      setEmail("");
+      inputControl.start({
+        x: [0, -10, 10, -10, 10, -10, 10, 0],
+        transition: { duration: 0.5 },
+      });
     }
-    // }
   }
 
   return (
@@ -157,16 +162,18 @@ export default function Header() {
               <motion.div
                 animate={inputControl}
                 initial={initialStateControl}
-                className="flex relative w-full h-12 justify-center"
+                className="flex relative w-full h-12 justify-center overflow-hidden rounded-full focus:border-[2px solid purple-300]"
               >
                 <input
-                  // required
+                  required
                   type="email"
+                  name="email"
                   value={email}
                   ref={emailFieldRef}
+                  autoComplete="false"
                   onChange={(event) => setEmail(event.target.value)}
                   placeholder="seu.melhor@email.com"
-                  className="absolute rounded-full p-3 text-purple-50 text-center bg-purple-dark w-full"
+                  className="absolute p-3 rounded-full text-purple-50 text-center bg-purple-dark w-full"
                 />
                 <motion.button
                   initial={{ scale: 0 }}
@@ -175,7 +182,11 @@ export default function Header() {
                   type="submit"
                   className="absolute right-3 top-2"
                 >
-                  <PaperAirplaneIcon width={32} type="submit" />
+                  <PaperAirplaneIcon
+                    width={32}
+                    type="submit"
+                    className="animate-pulse"
+                  />
                 </motion.button>
               </motion.div>
             </div>
