@@ -1,5 +1,5 @@
 "use client";
-import React, { Suspense, useRef } from "react";
+import React, { ForwardedRef, Suspense, forwardRef, useRef } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import { OrbitControls, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
@@ -28,9 +28,12 @@ function Model({ url }: { url: string }) {
   );
 }
 
-function BlackHole() {
+const BlackHole = (_: any, ref: ForwardedRef<HTMLCanvasElement>) => {
   return (
-    <Canvas camera={{ fov: 80, near: 1, far: 200, position: [0, 0, 2] }}>
+    <Canvas
+      ref={ref}
+      camera={{ fov: 80, near: 1, far: 200, position: [0, 0, 2] }}
+    >
       <ambientLight intensity={0.5} />
       <directionalLight position={[5, 5, 2]} />
       <Suspense fallback={null}>
@@ -39,6 +42,6 @@ function BlackHole() {
       <OrbitControls enableRotate={false} enableZoom={false} minDistance={0} />
     </Canvas>
   );
-}
+};
 
-export default BlackHole;
+export default forwardRef(BlackHole);

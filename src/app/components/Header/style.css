@@ -61,10 +61,10 @@ header::before {
   position: absolute;
   width: 100%;
   min-width: 1720px;
-  bottom: 0;
-  left: 50%;
   z-index: 10;
   max-height: 80%;
+  bottom: 0;
+  left: 50%;
 }
 
 .section--wave-transition path {
