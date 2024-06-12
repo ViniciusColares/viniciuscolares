@@ -3,7 +3,13 @@ import { useRef } from "react";
 import Image from "next/image";
 import { motion, useAnimation } from "framer-motion";
 import { z } from "zod";
-import { FaDev, FaGithub, FaLinkedin, FaStackOverflow } from "react-icons/fa";
+import {
+  FaDev,
+  FaGithub,
+  FaInstagram,
+  FaLinkedin,
+  FaStackOverflow,
+} from "react-icons/fa";
 import { FormEvent, useState } from "react";
 import { PaperAirplaneIcon } from "@heroicons/react/24/outline";
 import Wave02 from "@/app/assets/waves/wave02";
@@ -115,6 +121,15 @@ export default function Header() {
           </a>
         </div>
         <div className="flex gap-4 ml-3">
+          <a
+            href="https://www.instagram.com/viniciuscolares.dev/"
+            target="_blank"
+          >
+            <FaInstagram
+              className="stroke-purple-50 text-purple-50"
+              size={21}
+            />
+          </a>
           <a
             href="https://www.linkedin.com/in/viniciuscolares/"
             target="_blank"
