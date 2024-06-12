@@ -50,7 +50,11 @@ export default function Chat() {
 
   const renderAvatar = (isUser: boolean) => {
     return isUser ? (
-      <UserCircleIcon className="flex self-start ml-2" width={32} height={32} />
+      <UserCircleIcon
+        className="flex self-start ml-2 stroke-purple-50 text-purple-50"
+        width={32}
+        height={32}
+      />
     ) : (
       <Image
         className="flex self-start mr-2"
@@ -125,7 +129,7 @@ export default function Chat() {
               src={"/no-bg_face.png"}
             />
             <div className="flex flex-col space-y-3">
-              <div className="flex w-fit p-2 bg-purple-950 bg-opacity-25 rounded-md">
+              <div className="flex w-fit p-2 bg-purple-950 bg-opacity-25 rounded-md text-purple-50">
                 <p>Oi! Como eu posso te ajudar?</p>
               </div>
             </div>
