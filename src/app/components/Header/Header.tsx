@@ -100,12 +100,15 @@ export default function Header() {
             </div>
           </a>
         </div>
-        <div className="gap-6 justify-evenly hidden md:flex opacity-30">
+        <div
+          aria-disabled="true"
+          className="gap-6 justify-evenly hidden md:flex opacity-30"
+        >
           <a
             href="#!"
             className="text-center cursor-not-allowed text-purple-200"
           >
-            <span className="block font-bold text-xs bg-yellow-default text-purple-900 rounded-full">
+            <span className="block font-bold text-xs bg-yellow-default text-purple-950 rounded-full">
               EM BREVE
             </span>{" "}
             Meus GPTs
@@ -114,7 +117,7 @@ export default function Header() {
             href="#!"
             className="text-center cursor-not-allowed text-purple-200"
           >
-            <span className="block font-bold text-xs bg-yellow-default text-purple-900 rounded-full">
+            <span className="block font-bold text-xs bg-yellow-default text-purple-950 rounded-full">
               EM BREVE
             </span>{" "}
             Buy me a coffee
