@@ -124,6 +124,7 @@ export default function Header() {
           <a
             href="https://www.instagram.com/viniciuscolares.dev/"
             target="_blank"
+            aria-label="Go to viniciuscolares.dev instagram page"
           >
             <FaInstagram
               className="stroke-purple-50 text-purple-50"
@@ -133,22 +134,32 @@ export default function Header() {
           <a
             href="https://www.linkedin.com/in/viniciuscolares/"
             target="_blank"
+            aria-label="Go to viniciuscolares linkedin page"
           >
             <FaLinkedin className="stroke-purple-50 text-purple-50" size={21} />
           </a>
           <a
             href="https://pt.stackoverflow.com/users/7922/vinicius-colares"
             target="_blank"
+            aria-label="Go to vinicius-colares stack overflow page"
           >
             <FaStackOverflow
               className="stroke-purple-50 text-purple-50"
               size={21}
             />
           </a>
-          <a href="https://github.com/ViniciusColares" target="_blank">
+          <a
+            href="https://github.com/ViniciusColares"
+            target="_blank"
+            aria-label="Go to viniciuscolares github page"
+          >
             <FaGithub className="stroke-purple-50 text-purple-50" size={21} />
           </a>
-          <a href="https://dev.to/viniciuscolares" target="_blank">
+          <a
+            href="https://dev.to/viniciuscolares"
+            target="_blank"
+            aria-label="Go to viniciuscolares dev.to page"
+          >
             <FaDev className="stroke-purple-50 text-purple-50" size={21} />
           </a>
         </div>
@@ -197,6 +208,7 @@ export default function Header() {
                 transition={{ type: "spring" }}
                 type="submit"
                 className="absolute right-3 top-2"
+                aria-label="register to vinicius colares newsletter"
               >
                 <PaperAirplaneIcon
                   width={32}
