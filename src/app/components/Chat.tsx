@@ -1,7 +1,7 @@
 "use client";
 
 import { Input } from "@headlessui/react";
-import { useChat } from "ai/react";
+import { useChat } from "@ai-sdk/react";
 import Image from "next/image";
 import { motion, useAnimation } from "framer-motion";
 import { KeyboardEvent, useEffect, useRef, useState } from "react";
@@ -174,7 +174,7 @@ export default function Chat() {
             className="flex-grow p-2 bg-[transparent] text-purple-50 focus:outline-none resize-none shadow-lg"
             onFocus={() => setIsOpenChat(true)}
           />
-          <button type="submit">
+          <button type="submit" aria-label="send message">
             <PaperAirplaneIcon
               className="cursor-pointer stroke-purple-50"
               width={32}

@@ -2,6 +2,7 @@ import { Metadata } from "next";
 import { ReactNode } from "react";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { VercelToolbar } from "@vercel/toolbar/next";
 
 import Header from "./components/Header/Header";
 import Chat from "./components/Chat";
@@ -18,14 +19,19 @@ type RootLayoutProps = {
 };
 
 export default function RootLayout({ children }: RootLayoutProps) {
+  const shouldInjectToolbar = process.env.NODE_ENV === "development";
+
   return (
     <html lang="en" className="h-[100dvh]">
       <body className="min-h-[100dvh] flex flex-col">
-        <Header />
-        {children}
-        <Chat />
-        <Analytics />
-        <SpeedInsights />
+        <main>
+          <Header />
+          {children}
+          <Chat />
+          <Analytics />
+          <SpeedInsights />
+          {shouldInjectToolbar && <VercelToolbar />}
+        </main>
       </body>
     </html>
   );
