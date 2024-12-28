@@ -1,11 +1,13 @@
 "use client";
-import { ForwardedRef, Suspense, forwardRef, lazy, useRef } from "react";
-import { Canvas, MeshProps, useFrame } from "@react-three/fiber";
+import { ForwardedRef, Suspense, forwardRef } from "react";
+import { Canvas } from "@react-three/fiber";
 import { OrbitControls } from "@react-three/drei";
 import dynamic from "next/dynamic";
 import { BlackHoleProps } from "./Model";
 
-const Scene = dynamic(() => import("./Model"), { ssr: false });
+const Scene = dynamic(() => import("./Model").then((mod) => mod), {
+  ssr: false,
+});
 
 const BlackHole = (
   props: BlackHoleProps,
