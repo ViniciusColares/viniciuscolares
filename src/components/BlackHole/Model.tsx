@@ -22,7 +22,7 @@ export default function Model(props: BlackHoleProps) {
   });
 
   return (
-    <motion.mesh ref={blackHoleRef} {...props}>
+    <motion.mesh ref={blackHoleRef as React.Ref<THREE.Mesh>} {...props}>
       <primitive object={scene} />
     </motion.mesh>
   );
