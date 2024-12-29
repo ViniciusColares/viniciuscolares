@@ -1,19 +1,17 @@
+import * as THREE from "three";
 import { useRef } from "react";
-import { MeshProps, useFrame } from "@react-three/fiber";
-
+import { useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
 import { motion } from "framer-motion-3d";
-import * as THREE from "three";
-import { MotionProps } from "framer-motion";
 
-export interface BlackHoleProps extends MotionProps {
+export interface BlackHoleProps {
   key?: React.Key;
   rotation: [number, number, number];
 }
 
 export default function Model(props: BlackHoleProps) {
   const { scene } = useGLTF("/blackhole/blackhole.gltf");
-  const blackHoleRef = useRef<MeshProps>(null);
+  const blackHoleRef = useRef<THREE.Mesh | null>(null);
 
   useFrame(() => {
     if (blackHoleRef.current) {
@@ -24,7 +22,7 @@ export default function Model(props: BlackHoleProps) {
   });
 
   return (
-    <motion.mesh ref={blackHoleRef} {...props} key={props.key ?? undefined}>
+    <motion.mesh ref={blackHoleRef} {...props}>
       <primitive object={scene} />
     </motion.mesh>
   );

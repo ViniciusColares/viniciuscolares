@@ -14,21 +14,17 @@ const BlackHole = (
   ref: ForwardedRef<HTMLCanvasElement>
 ) => {
   return (
-    <Suspense fallback={"loading"}>
-      <Canvas
-        ref={ref}
-        camera={{ fov: 75, near: 1, far: 200, position: [0, 0, 2] }}
-      >
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[5, 5, 2]} />
+    <Canvas
+      ref={ref}
+      camera={{ fov: 75, near: 1, far: 200, position: [0, 0, 2] }}
+    >
+      <ambientLight intensity={0.5} />
+      <directionalLight position={[5, 5, 2]} />
+      <Suspense fallback={"loading"}>
         <Scene {...props} />
-        <OrbitControls
-          enableRotate={false}
-          enableZoom={false}
-          minDistance={0}
-        />
-      </Canvas>
-    </Suspense>
+      </Suspense>
+      <OrbitControls enableRotate={false} enableZoom={false} minDistance={0} />
+    </Canvas>
   );
 };
 
