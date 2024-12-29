@@ -16,13 +16,14 @@ export default function Model(props: BlackHoleProps) {
   useFrame(() => {
     if (blackHoleRef.current) {
       if (blackHoleRef.current.rotation) {
-        (blackHoleRef.current.rotation as THREE.Euler).y += 0.03;
+        blackHoleRef.current.rotation.y += 0.03;
       }
     }
   });
 
   return (
-    <motion.mesh ref={blackHoleRef as React.Ref<THREE.Mesh>} {...props}>
+    // @ts-expect-error: TypeScript does not recognize motion.mesh type
+    <motion.mesh ref={blackHoleRef} {...props}>
       <primitive object={scene} />
     </motion.mesh>
   );

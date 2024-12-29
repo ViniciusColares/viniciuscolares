@@ -6,6 +6,8 @@ import { AcademicCapIcon } from "@heroicons/react/24/outline";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
+const BlackHoleMotioned = motion(BlackHole);
+
 export default function Home() {
   const [isGrowing, setIsGrowing] = useState(false);
   const blackHoleRef = useRef<HTMLCanvasElement>(null);
@@ -138,22 +140,23 @@ export default function Home() {
 
       <motion.div
         initial={{ bottom: 0 }}
-        animate={{ bottom: -300 }}
+        animate={{ bottom: -333 }}
         transition={{
           duration: 5,
           ease: "linear",
         }}
         className="absolute w-full h-full"
       >
-        <BlackHole
+        <BlackHoleMotioned
           ref={blackHoleRef}
+          style={{}}
           rotation={[0.5, 0, 0]}
-          initial={{ scale: 0 }}
+          initial={{ width: "100dvh", height: "100dvh", scale: 0 }}
           onAnimationComplete={() => setIsGrowing(false)}
           animate={
             isGrowing
               ? { scale: 1.36, transition: { duration: 1 } }
-              : { scale: 0.9, transition: { duration: 5 } }
+              : { scale: 1, transition: { duration: 5 } }
           }
         />
       </motion.div>
