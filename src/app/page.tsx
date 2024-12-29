@@ -6,8 +6,6 @@ import { AcademicCapIcon } from "@heroicons/react/24/outline";
 import { motion } from "framer-motion";
 import Link from "next/link";
 
-const BlackHoleMotioned = motion(BlackHole);
-
 export default function Home() {
   const [isGrowing, setIsGrowing] = useState(false);
   const blackHoleRef = useRef<HTMLCanvasElement>(null);
@@ -104,14 +102,14 @@ export default function Home() {
         aria-disabled="true"
         className="justify-evenly w-full max-w-screen-md mx-auto flex flex-col items-center mt-6 z-10"
       >
-        <h1 className="text-4xl font-bold text-center mb-2">
+        <h1 className="text-4xl font-bold text-center mb-2 text-white">
           Além do horizonte de eventos
         </h1>
         <h2 className="text-xs font-bold text-center uppercase text-purple-400">
           Todos nós temos algo singular
         </h2>
 
-        <p className="text-base text-center mt-10 w-4/5 px-8">
+        <p className="text-base text-center mt-10 w-4/5 px-8 text-white">
           A tecnologia da informação já mudou o mundo e forma como vivemos.
           Conheça como as minhas habilidades podem te ajudar a explorar essas
           infinitas possibilidades.
@@ -147,11 +145,10 @@ export default function Home() {
         }}
         className="absolute w-full h-full"
       >
-        <BlackHoleMotioned
+        <BlackHole
           ref={blackHoleRef}
-          style={{}}
           rotation={[0.5, 0, 0]}
-          initial={{ width: "100dvh", height: "100dvh", scale: 0 }}
+          initial={{ scale: 0 }}
           onAnimationComplete={() => setIsGrowing(false)}
           animate={
             isGrowing

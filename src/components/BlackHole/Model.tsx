@@ -3,8 +3,9 @@ import { useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import { useGLTF } from "@react-three/drei";
 import { motion } from "framer-motion-3d";
+import { MotionProps } from "framer-motion";
 
-export interface BlackHoleProps {
+export interface BlackHoleProps extends MotionProps {
   key?: React.Key;
   rotation: [number, number, number];
 }
