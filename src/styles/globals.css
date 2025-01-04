@@ -87,7 +87,7 @@ header::before {
   z-index: -2;
   opacity: 1;
   background-image: url("/milky-way.jpg");
-  animation: universeMove 60s linear infinite;
+  animation: universeMove 60s linear infinite alternate;
   background-position: center center;
   background-attachment: fixed;
   background-repeat: repeat;
@@ -103,7 +103,7 @@ header::after {
   z-index: -1;
   opacity: 0.8;
   background-image: url("/milky-way.jpg");
-  animation: universeMove 80s linear 0s infinite reverse;
+  animation: universeMove 60s linear 0s infinite alternate-reverse;
   background-position: center center;
   background-attachment: fixed;
   background-repeat: repeat;

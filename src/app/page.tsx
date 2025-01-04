@@ -3,30 +3,28 @@ import { useRef, useState } from "react";
 import { FaGithub, FaLinkedin, FaStackOverflow } from "react-icons/fa";
 import { BlackHole, Button } from "@/components";
 import { AcademicCapIcon } from "@heroicons/react/24/outline";
-import { motion } from "framer-motion";
+import { AnimatePresence, motion } from "framer-motion";
 import Link from "next/link";
 
 export default function Home() {
   const [isGrowing, setIsGrowing] = useState(false);
   const blackHoleRef = useRef<HTMLCanvasElement>(null);
 
-  const waveAnimation = {
+  const blackHoleAnimation = {
+    initial: {
+      transform:
+        "matrix3d(1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1, 0, 0, 0, 0, 1) scaleY(1) scaleX(1) translateY(0)",
+      zIndex: 1,
+      opacity: 0,
+    },
     spaghetti: {
-      scaleX: [1, 0],
-      scaleY: [1, 1.25],
-      y: 500,
-      opacity: [1, 0],
+      zIndex: 0,
+      transform:
+        "matrix3d(1, 0, 0, 0, 0, 0.8, 0, -0.00333, 0, 0, 1, 0, 0, 0, 0, 1) scaleY(3) scaleX(0.1)  translateY(500px)",
       transition: {
-        duration: 1,
-        y: {
-          duration: 0.25,
-          ease: [0.7, 0, 0.84, 0],
-          delay: 0.75,
-        },
-        opacity: {
-          duration: 0.25,
-          ease: [0.7, 0, 0.84, 0],
-          delay: 0.75,
+        transform: {
+          duration: 1,
+          delay: 0.3,
         },
       },
     },
@@ -94,47 +92,52 @@ export default function Home() {
         </div>
       </motion.nav>
 
-      <motion.div
-        initial={{ scale: 0, opacity: 0, transformStyle: "preserve-3d" }}
-        variants={waveAnimation}
-        animate={isGrowing ? "spaghetti" : { scale: 1, opacity: 1 }}
-        transition={{ duration: 1, delay: 3, stiffness: 50, mass: 1 }}
-        aria-disabled="true"
-        className="justify-evenly w-full max-w-screen-md mx-auto flex flex-col items-center mt-6 z-10"
-      >
-        <h1 className="text-4xl font-bold text-center mb-2 text-white">
-          Além do horizonte de eventos
-        </h1>
-        <h2 className="text-xs font-bold text-center uppercase text-purple-400">
-          Todos nós temos algo singular
-        </h2>
-
-        <p className="text-base text-center mt-10 w-4/5 px-8 text-white">
-          A tecnologia da informação já mudou o mundo e forma como vivemos.
-          Conheça como as minhas habilidades podem te ajudar a explorar essas
-          infinitas possibilidades.
-        </p>
-
-        <Button
-          onClick={() => setIsGrowing((old) => !old)}
-          className="mt-10"
-          variant="outline"
-          size="lg"
+      <AnimatePresence>
+        <motion.div
+          style={{ transformStyle: "preserve-3d" }}
+          variants={blackHoleAnimation}
+          whileInView={{ scale: 1, opacity: 1 }}
+          initial={"initial"}
+          exit={{ scale: 0, opacity: 0 }}
+          animate={isGrowing && "spaghetti"}
+          transition={{ duration: 1, delay: 5 }}
+          aria-disabled="true"
+          className="justify-evenly w-full max-w-screen-md mx-auto flex flex-col items-center mt-6 z-10"
         >
-          Conhecer habilidades
-          <AcademicCapIcon
-            className="inline ml-2 stroke-purple-500"
-            width={24}
-          />
-        </Button>
-        <small className="my-1 text-gray-400 text-xs">ou</small>
-        <a
-          href="#!"
-          className="text-gray-400 text-xs underline hover:text-gray-200"
-        >
-          me faça uma proposta de trabalho
-        </a>
-      </motion.div>
+          <h1 className="text-4xl font-bold text-center mb-2 text-white">
+            Além do horizonte de eventos
+          </h1>
+          <h2 className="text-xs font-bold text-center uppercase text-purple-400">
+            Todos nós temos algo singular
+          </h2>
+
+          <p className="text-base text-center mt-10 w-4/5 px-8 text-white">
+            A tecnologia da informação já mudou o mundo e a forma como vivemos.
+            Conheça como as minhas habilidades podem te ajudar a explorar essas
+            infinitas possibilidades.
+          </p>
+
+          <Button
+            onClick={() => setIsGrowing((old) => !old)}
+            className="mt-10"
+            variant="outline"
+            size="lg"
+          >
+            Conhecer habilidades
+            <AcademicCapIcon
+              className="inline ml-2 stroke-purple-500"
+              width={24}
+            />
+          </Button>
+          <small className="my-1 text-gray-400 text-xs">ou</small>
+          <a
+            href="#!"
+            className="text-gray-400 text-xs underline hover:text-gray-200"
+          >
+            me faça uma proposta de trabalho
+          </a>
+        </motion.div>
+      </AnimatePresence>
 
       <motion.div
         initial={{ bottom: 0 }}
@@ -152,8 +155,11 @@ export default function Home() {
           onAnimationComplete={() => setIsGrowing(false)}
           animate={
             isGrowing
-              ? { scale: 1.36, transition: { duration: 1 } }
-              : { scale: 1, transition: { duration: 5 } }
+              ? {
+                  scale: [0.9, 1.36, 0.9],
+                  transition: { duration: 1, ease: [0.87, 0, 0.33, 1] },
+                }
+              : { scale: 0.9, transition: { duration: 5 } }
           }
         />
       </motion.div>

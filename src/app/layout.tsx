@@ -11,7 +11,7 @@ type RootLayoutProps = {
 export default function RootLayout({ children }: RootLayoutProps) {
   return (
     <html lang="en" className="h-[100dvh]">
-      <body className="min-h-[100dvh] flex flex-col">
+      <body className="h-[100dvh] overflow-hidden flex flex-col">
         <main>{children}</main>
         <Analytics />
         <SpeedInsights />
