@@ -17,13 +17,17 @@ export default function Home() {
       zIndex: 1,
       opacity: 0,
     },
-    spaghetti: {
+    holeScale: {
+      scale: [0.9, 1.36, 0.9],
+      transition: { duration: 1, ease: [0.87, 0, 0.33, 1] },
+    },
+    spaghettifyContent: {
       zIndex: 0,
       transform:
-        "matrix3d(1, 0, 0, 0, 0, 0.8, 0, -0.00333, 0, 0, 1, 0, 0, 0, 0, 1) scaleY(3) scaleX(0.1)  translateY(500px)",
+        "matrix3d(1, 0, 0, 0, 0, 0.8, 0, -0.00333, 0, 0, 1, 0, 0, 0, 0, 1) scaleY(6) scaleX(0.1)  translateY(500px)",
       transition: {
         transform: {
-          duration: 1,
+          duration: 0.5,
           delay: 0.3,
         },
       },
@@ -99,7 +103,7 @@ export default function Home() {
           whileInView={{ scale: 1, opacity: 1 }}
           initial={"initial"}
           exit={{ scale: 0, opacity: 0 }}
-          animate={isGrowing && "spaghetti"}
+          animate={isGrowing && "spaghettifyContent"}
           transition={{ duration: 1, delay: 5 }}
           aria-disabled="true"
           className="justify-evenly w-full max-w-screen-md mx-auto flex flex-col items-center mt-6 z-10"
@@ -153,12 +157,10 @@ export default function Home() {
           rotation={[0.5, 0, 0]}
           initial={{ scale: 0 }}
           onAnimationComplete={() => setIsGrowing(false)}
+          variants={blackHoleAnimation}
           animate={
             isGrowing
-              ? {
-                  scale: [0.9, 1.36, 0.9],
-                  transition: { duration: 1, ease: [0.87, 0, 0.33, 1] },
-                }
+              ? "holeScale"
               : { scale: 0.9, transition: { duration: 5 } }
           }
         />
