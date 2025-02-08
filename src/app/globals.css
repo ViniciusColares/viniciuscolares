@@ -18,4 +18,28 @@ body {
   color: var(--foreground);
   background: var(--background);
   font-family: Arial, Helvetica, sans-serif;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  cursor: none; /* Esconde o cursor padrão */
+}
+
+.black-hole {
+  position: absolute;
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(0, 0, 0, 1) 0%,
+    rgba(0, 0, 0, 0) 70%
+  );
+  pointer-events: none; /* Permite que os eventos do mouse passem através do buraco negro */
+  mix-blend-mode: multiply;
+  transform: translate(-50%, -50%);
+  z-index: 1000;
+}
+
+.distorted {
+  filter: url(#distortionFilter);
 }

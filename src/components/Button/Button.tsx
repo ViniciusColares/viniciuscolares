@@ -9,6 +9,7 @@ type ButtonProps = {
   disabled?: boolean;
   onClick?: () => void;
   className?: string;
+  onMouseEnter?: () => void;
 };
 
 const Button: React.FC<ButtonProps> = ({
@@ -18,6 +19,7 @@ const Button: React.FC<ButtonProps> = ({
   disabled = false,
   onClick,
   className,
+  ...rest
 }) => {
   const baseStyles =
     "font-bold rounded-lg transition-all ease-out duration-50 focus:outline-none backdrop-blur-sm";
@@ -48,6 +50,7 @@ const Button: React.FC<ButtonProps> = ({
       )}
       onClick={onClick}
       disabled={disabled}
+      {...rest}
     >
       {children}
     </motion.button>

@@ -1,0 +1,29 @@
+.button-container {
+  display: flex;
+  gap: 10px;
+  position: relative;
+}
+
+.button {
+  position: relative;
+  display: flex;
+  align-items: center;
+  padding: 12px 24px;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  outline: none;
+  border-radius: 6px;
+  transition: all 0.15s;
+}
+
+.border {
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  right: 0px;
+  bottom: 0px;
+  border: 2px solid #bb77ff;
+  border-radius: 8px;
+  pointer-events: none;
+}
